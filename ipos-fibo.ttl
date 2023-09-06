@@ -1,0 +1,174 @@
+# GRAPH <cb/ipos/(uuid)>
+
+## Issuer, Stock exchange
+
+<cb/agent/(org_uuid)/issuer> a fibo-fbc-fi-fi:Issuer, fibo-fbc-pas-fpas:Offeror;
+  fibo-fnd-rel-rel:issues <cb/ipo/(uuid)/share>;
+  fibo-fnd-rel-rel:hasIdentity <cb/agent/(org_uuid)>.
+
+<cb/exchange/(stock_exchange_symbol)> a fibo-fbc-fct-mkt:Exchange, fibo-fbc-fct-ra:RegistrationAuthority;
+  rdfs:label "Exchange '(stock_exchange_symbol)'";
+  fibo-fbc-fct-mkt:hasExchangeAcronym '(stock_exchange_symbol)';
+  lcc-lr:isIdentifiedBy <cb/exchange/(stock_exchange_symbol)/code>.
+
+<cb/exchange/(stock_exchange_symbol)/code> a lcc-lr:Identifier;
+  rdfs:label "Identifier of exchange '(stock_exchange_symbol)'";
+  lcc-lr:hasTag      '(stock_exchange_symbol)';
+  lcc-lr:identifies  <cb/exchange/(stock_exchange_symbol)>;
+  lcc-lr:isMemberOf  <cb/exchange/code>.
+
+<cb/exchange/code> a lcc-lr:CodeSet;
+  rdfs:label 'CrunchBase exchange code scheme'.
+
+<cb/ipo/(uuid)/share> a fibo-sec-sec-lst:ListedSecurity, fibo-sec-eq-eq:Share.
+
+## Offering, Share, Listing, Ticker
+
+<cb/ipo/(uuid)/offering> a fibo-sec-sec-iss:PublicOffering;
+  rdfs:label "IPO (permalink)";
+  fibo-fbc-pas-fpas:hasOfferingPrice <cb/ipo/(uuid)/price/(money_raised_currency_code)>, <cb/ipo/(uuid)/price/USD>;
+  fibo-fnd-rel-rel:appliesTo <cb/ipo/(uuid)/share>;
+  fibo-fnd-rel-rel:isIssuedBy <cb/agent/(org_uuid)/issuer>;
+  fibo-sec-sec-iss:hasFirstTradeDate '(went_public_on)'^^xsd:date;
+  fibo-sec-sec-iss:isRegisteredWith <cb/exchange/(stock_exchange_symbol)>;
+  cb:uuid '(uuid)';
+  cb:name '(name)';
+  cb:permalink '(permalink)';
+  cb:url '(cb_url)'^^xsd:anyURI;
+  cb:rank '(rank)'^^xsd:integer;
+  cb:createdAt 'fixDate(created_at)'^^xsd:dateTime;
+  cb:updatedAt 'fixDate(updated_at)'^^xsd:dateTime.
+
+<cb/ipo/(uuid)/share> a fibo-sec-sec-lst:ListedSecurity, fibo-sec-eq-eq:Share;
+  rdfs:label "Share/listed security '(stock_symbol)'";
+  fibo-sec-sec-lst:isListedVia <cb/ipo/(uuid)/listing>;
+  fibo-fnd-agr-ctr:hasPrincipalParty <cb/agent/(org_uuid)/issuer>;
+  fibo-fnd-rel-rel:isIssuedBy <cb/agent/(org_uuid)/issuer>;
+  fibo-fbc-fi-fi:isDenominatedIn <cb/currency/(share_price_currency_code)>;
+  fibo-sec-sec-lst:hasOriginalPlaceOfListing <cb/exchange/(stock_exchange_symbol)>; ## don't know this but it's mandatory
+  fibo-sec-sec-lst:hasHomeExchange <cb/exchange/(stock_exchange_symbol)>.
+
+<cb/ipo/(uuid)/listing> a fibo-sec-sec-lst:Listing;
+  rdfs:label "Listing of share/security '(stock_symbol)' on exchange '(stock_exchange_symbol)'";
+  fibo-sec-sec-lst:lists <cb/ipo/(uuid)/share>;
+  lcc-lr:isIdentifiedBy <cb/ipo/(uuid)/ticker>;
+  fibo-sec-sec-lst:isTradedOn <cb/exchange/(stock_exchange_symbol)>;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/(share_price_currency_code)>.
+
+<cb/ipo/(uuid)/ticker> a fibo-sec-sec-id:TickerSymbol, fibo-sec-sec-id:ListedSecurityIdentifier;
+  rdfs:label "Ticker symbol/security identifier '(stock_exchange_symbol):(stock_symbol)'";
+  lcc-lr:hasTag '(stock_symbol)';
+  fibo-fbc-fct-ra:isRegisteredBy <cb/exchange/(stock_exchange_symbol)>;
+  lcc-lr:identifies <cb/ipo/(uuid)/listing>;
+  fibo-fnd-arr-id:hasInitialAssignmentDate '(went_public_on)'^^xsd:date.
+
+<cb/currency/USD> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(share_price_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(valuation_price_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(money_raised_currency_code)> a fibo-fnd-acc-cur:Currency.
+## Financials
+
+<cb/ipo/(uuid)/offering> a fibo-sec-sec-iss:PublicOffering;
+  fibo-fbc-pas-fpas:hasOfferingPrice <cb/ipo/(uuid)/price/(money_raised_currency_code)>, <cb/ipo/(uuid)/price/USD>.
+
+<cb/ipo/(uuid)/price/(money_raised_currency_code)> a fibo-fnd-acc-cur:MonetaryPrice;
+  rdfs:label "Total price/money raised of IPO (permalink) in local currency";
+  fibo-fnd-acc-cur:hasAmount '(money_raised)'^^xsd:decimal;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/(money_raised_currency_code)>.
+
+<cb/ipo/(uuid)/price/USD> a fibo-fnd-acc-cur:MonetaryPrice;
+  rdfs:label "Total price/money raised of IPO (permalink) in USD";
+  fibo-fnd-acc-cur:hasAmount '(money_raised_usd)'^^xsd:decimal;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/USD>.
+
+<cb/ipo/(uuid)/marketCap/(valuation_price_currency_code)> a fibo-ind-mkt-bas:MarketCapitalization;
+  rdfs:label "Market Cap (valuation) at the time of IPO (permalink) in local currency";
+  fibo-ind-mkt-bas:hasMarketCapitalizationValue <cb/ipo/(uuid)/marketCapValue/(valuation_price_currency_code)>;
+  fibo-fnd-utl-alx:hasArgument <cb/ipo/(uuid)/pricePerShare/(share_price_currency_code)>;
+  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  fibo-fnd-rel-rel:appliesTo <cb/agent/(org_uuid)/issuer>.
+
+<cb/ipo/(uuid)/marketCap/USD> a fibo-ind-mkt-bas:MarketCapitalization;
+  rdfs:label "Market Cap (valuation) at the time of IPO (permalink) in USD";
+  fibo-ind-mkt-bas:hasMarketCapitalizationValue <cb/ipo/(uuid)/marketCapValue/USD>;
+  fibo-fnd-utl-alx:hasArgument <cb/ipo/(uuid)/pricePerShare/USD>;
+  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  fibo-fnd-rel-rel:appliesTo <cb/agent/(org_uuid)/issuer>.
+
+<cb/ipo/(uuid)/marketCapValue/(valuation_price_currency_code)> a fibo-fnd-acc-cur:MonetaryAmount;
+  rdfs:label "Monetary amount of Market Cap (valuation) in local currency";
+  fibo-fnd-acc-cur:hasAmount '(valuation_price)'^^xsd:decimal;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/(valuation_price_currency_code)>.
+
+<cb/ipo/(uuid)/marketCapValue/USD> a fibo-fnd-acc-cur:MonetaryAmount;
+  rdfs:label "Monetary amount of Market Cap (valuation) in USD";
+  fibo-fnd-acc-cur:hasAmount '(valuation_price_usd)'^^xsd:decimal;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/USD>.
+
+<cb/ipo/(uuid)/pricePerShare/(share_price_currency_code)> a fibo-sec-eq-eq:PricePerShare;
+  rdfs:label "Price per share at the time of IPO (permalink) in local currency";
+  fibo-fnd-acc-cur:hasAmount '(share_price)'^^xsd:decimal;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/(share_price_currency_code)>;
+  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  fibo-fnd-acc-cur:isPriceFor <cb/ipo/(uuid)/share>.
+
+<cb/ipo/(uuid)/pricePerShare/USD> a fibo-sec-eq-eq:PricePerShare;
+  rdfs:label "Price per share at the time of IPO (permalink) in USD";
+  fibo-fnd-acc-cur:hasAmount '(share_price_usd)'^^xsd:decimal;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/USD>;
+  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  fibo-fnd-acc-cur:isPriceFor <cb/ipo/(uuid)/share>.
+
+<cb/currency/USD> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(share_price_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(valuation_price_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(money_raised_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/ipo/(uuid)/share> a fibo-sec-sec-lst:ListedSecurity, fibo-sec-eq-eq:Share.
+<cb/agent/(org_uuid)/issuer> a fibo-fbc-fi-fi:Issuer, fibo-fbc-pas-fpas:Offeror.
+## Currencies: USD plus 3 more for the 3 financials
+
+<cb/currency/USD> a fibo-fnd-acc-cur:Currency;
+  lcc-lr:hasName 'USD';
+  rdfs:label 'Currency USD'.
+<cb/currency/USD/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
+  rdfs:label 'Code of currency USD';
+  lcc-lr:hasTag 'USD';
+  lcc-lr:denotes <cb/currency/USD>;
+  lcc-lr:identifies <cb/currency/USD>;
+  lcc-lr:isMemberOf <cb/currency>.
+
+<cb/currency/(share_price_currency_code)> a fibo-fnd-acc-cur:Currency;
+  lcc-lr:hasName '(share_price_currency_code)';
+  rdfs:label 'Currency (share_price_currency_code)'.
+<cb/currency/(share_price_currency_code)/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
+  rdfs:label 'Code of currency (share_price_currency_code)';
+  lcc-lr:hasTag '(share_price_currency_code)';
+  lcc-lr:denotes <cb/currency/(share_price_currency_code)>;
+  lcc-lr:identifies <cb/currency/(share_price_currency_code)>;
+  lcc-lr:isMemberOf <cb/currency>.
+
+<cb/currency/(valuation_price_currency_code)> a fibo-fnd-acc-cur:Currency;
+  lcc-lr:hasName '(valuation_price_currency_code)';
+  rdfs:label 'Currency (valuation_price_currency_code)'.
+<cb/currency/(valuation_price_currency_code)/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
+  rdfs:label 'Code of currency (valuation_price_currency_code)';
+  lcc-lr:hasTag '(valuation_price_currency_code)';
+  lcc-lr:denotes <cb/currency/(valuation_price_currency_code)>;
+  lcc-lr:identifies <cb/currency/(valuation_price_currency_code)>;
+  lcc-lr:isMemberOf <cb/currency>.
+
+<cb/currency/(money_raised_currency_code)> a fibo-fnd-acc-cur:Currency;
+  lcc-lr:hasName '(money_raised_currency_code)';
+  rdfs:label 'Currency (money_raised_currency_code)'.
+<cb/currency/(money_raised_currency_code)/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
+  rdfs:label 'Code of currency (money_raised_currency_code)';
+  lcc-lr:hasTag '(money_raised_currency_code)';
+  lcc-lr:denotes <cb/currency/(money_raised_currency_code)>;
+  lcc-lr:identifies <cb/currency/(money_raised_currency_code)>;
+  lcc-lr:isMemberOf <cb/currency>.
+
+<cb/currency> a lcc-lr:IdentificationScheme, lcc-lr:CodeSet;
+  rdfs:label 'CrunchBase currency code set';
+  skos:definition 'Currency identifiers used in CrunchBase';
+  skos:scopeNote 'Better reconcile to fibo-fnd-acc-4217:ISO4217-CodeSet'.
+

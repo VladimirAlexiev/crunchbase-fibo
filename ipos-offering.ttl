@@ -1,0 +1,44 @@
+## Offering, Share, Listing, Ticker
+
+<cb/ipo/(uuid)/offering> a fibo-sec-sec-iss:PublicOffering;
+  rdfs:label "IPO (permalink)";
+  fibo-fbc-pas-fpas:hasOfferingPrice <cb/ipo/(uuid)/price/(money_raised_currency_code)>, <cb/ipo/(uuid)/price/USD>;
+  fibo-fnd-rel-rel:appliesTo <cb/ipo/(uuid)/share>;
+  fibo-fnd-rel-rel:isIssuedBy <cb/agent/(org_uuid)/issuer>;
+  fibo-sec-sec-iss:hasFirstTradeDate '(went_public_on)'^^xsd:date;
+  fibo-sec-sec-iss:isRegisteredWith <cb/exchange/(stock_exchange_symbol)>;
+  cb:uuid '(uuid)';
+  cb:name '(name)';
+  cb:permalink '(permalink)';
+  cb:url '(cb_url)'^^xsd:anyURI;
+  cb:rank '(rank)'^^xsd:integer;
+  cb:createdAt 'fixDate(created_at)'^^xsd:dateTime;
+  cb:updatedAt 'fixDate(updated_at)'^^xsd:dateTime.
+
+<cb/ipo/(uuid)/share> a fibo-sec-sec-lst:ListedSecurity, fibo-sec-eq-eq:Share;
+  rdfs:label "Share/listed security '(stock_symbol)'";
+  fibo-sec-sec-lst:isListedVia <cb/ipo/(uuid)/listing>;
+  fibo-fnd-agr-ctr:hasPrincipalParty <cb/agent/(org_uuid)/issuer>;
+  fibo-fnd-rel-rel:isIssuedBy <cb/agent/(org_uuid)/issuer>;
+  fibo-fbc-fi-fi:isDenominatedIn <cb/currency/(share_price_currency_code)>;
+  fibo-sec-sec-lst:hasOriginalPlaceOfListing <cb/exchange/(stock_exchange_symbol)>; ## don't know this but it's mandatory
+  fibo-sec-sec-lst:hasHomeExchange <cb/exchange/(stock_exchange_symbol)>.
+
+<cb/ipo/(uuid)/listing> a fibo-sec-sec-lst:Listing;
+  rdfs:label "Listing of share/security '(stock_symbol)' on exchange '(stock_exchange_symbol)'";
+  fibo-sec-sec-lst:lists <cb/ipo/(uuid)/share>;
+  lcc-lr:isIdentifiedBy <cb/ipo/(uuid)/ticker>;
+  fibo-sec-sec-lst:isTradedOn <cb/exchange/(stock_exchange_symbol)>;
+  fibo-fnd-acc-cur:hasCurrency <cb/currency/(share_price_currency_code)>.
+
+<cb/ipo/(uuid)/ticker> a fibo-sec-sec-id:TickerSymbol, fibo-sec-sec-id:ListedSecurityIdentifier;
+  rdfs:label "Ticker symbol/security identifier '(stock_exchange_symbol):(stock_symbol)'";
+  lcc-lr:hasTag '(stock_symbol)';
+  fibo-fbc-fct-ra:isRegisteredBy <cb/exchange/(stock_exchange_symbol)>;
+  lcc-lr:identifies <cb/ipo/(uuid)/listing>;
+  fibo-fnd-arr-id:hasInitialAssignmentDate '(went_public_on)'^^xsd:date.
+
+<cb/currency/USD> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(share_price_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(valuation_price_currency_code)> a fibo-fnd-acc-cur:Currency.
+<cb/currency/(money_raised_currency_code)> a fibo-fnd-acc-cur:Currency.

@@ -1,0 +1,13 @@
+from: markdown+pipe_tables+autolink_bare_uris-smart+citations
+to: html
+strip-comments: true
+toc: true
+number-sections: true
+wrap: preserve
+standalone: true
+embed-resources: false
+citeproc: true
+metadata:
+  maxwidth: 100%
+  bibliography: bibliography.bib
+  csl: acm-sig-proceedings-long-author-list.csl

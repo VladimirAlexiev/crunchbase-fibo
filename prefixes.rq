@@ -1,0 +1,24 @@
+base         <https://ontotext.com/crunchbase/resource/>
+prefix cb:   <https://ontotext.com/crunchbase/ontology/>
+
+prefix fibo-fbc-fct-mkt: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/>
+prefix fibo-fbc-fct-ra:  <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/>
+prefix fibo-fbc-fi-fi:   <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/>
+prefix fibo-fbc-pas-fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/>
+prefix fibo-fnd-acc-cur: <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/>
+prefix fibo-fnd-agr-ctr: <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/>
+prefix fibo-fnd-arr-id:  <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/>
+prefix fibo-fnd-dt-fd:   <https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/>
+prefix fibo-fnd-rel-rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/>
+prefix fibo-fnd-utl-alx: <https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/Analytics/>
+prefix fibo-ind-mkt-bas: <https://spec.edmcouncil.org/fibo/ontology/IND/MarketIndices/BasketIndices/>
+prefix fibo-sec-eq-eq:   <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/>
+prefix fibo-sec-sec-id:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/>
+prefix fibo-sec-sec-iss:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/>
+prefix fibo-sec-sec-lst: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/>
+prefix lcc-lr:           <https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/>
+
+prefix puml:   <http://plantuml.com/ontology#>
+prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+prefix skos:   <http://www.w3.org/2004/02/skos/core#>
+prefix xsd:    <http://www.w3.org/2001/XMLSchema#>
