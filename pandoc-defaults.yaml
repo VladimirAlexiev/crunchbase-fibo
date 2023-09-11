@@ -1,5 +1,9 @@
 from: markdown+pipe_tables+autolink_bare_uris-smart+citations
 to: html
+css:
+  - css/default.min.css
+  - css/onto-hljs.css
+include-in-header: pandoc-header.html
 strip-comments: true
 toc: true
 number-sections: true
@@ -9,5 +13,6 @@ embed-resources: false
 citeproc: true
 metadata:
   maxwidth: 100%
+  document-css: true  # re-enable default styles (`css` disables them)
   bibliography: bibliography.bib
   csl: acm-sig-proceedings-long-author-list.csl

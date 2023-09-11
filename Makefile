@@ -8,11 +8,11 @@ all: $(PNG) README.html bibliography.html ipos-fibo.ttl ipos-fibo.ru
 	rm $*.puml
 
 %.html: %.md
-	pandoc $^ --defaults=defaults -o $@
+	pandoc $^ --defaults=pandoc-defaults -o $@
 
 # just for testing
 bibliography.html: bibliography.bib
-	pandoc $^ --defaults=defaults --from=bibtex --metadata title=bibliography -o $@
+	pandoc $^ --defaults=pandoc-defaults --from=bibtex --metadata title=bibliography -o $@
 
 ipos-fibo.ttl: ipos-agents.ttl ipos-offering.ttl ipos-financials.ttl ipos-currencies.ttl
 	cat $^ > $@

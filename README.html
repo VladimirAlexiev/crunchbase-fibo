@@ -188,6 +188,19 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
+  <link rel="stylesheet" href="css/default.min.css" />
+  <link rel="stylesheet" href="css/onto-hljs.css" />
+  <script src="css/highlight.min.js"></script>
+  <script src="css/ttl.js"></script>
+  <script src="css/sparql.js"></script>
+  <script src="css/pie.js"></script>
+  <script>
+    hljs.registerLanguage('ttl', ttl_highlight);
+    hljs.registerLanguage('sparql', sparql_highlight);
+    hljs.registerLanguage('pie', pie_highlight);
+    hljs.initHighlightingOnLoad();
+    hljs.highlightAll();
+  </script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -229,7 +242,9 @@
 is a family of ontologies and a reference model for representing data in the financial world using semantic technologies.
 It is used in fintech Knowledge Graph (KG) projects because it offers a comprehensive and principled approach to representing financial data,
 and a wide set of predefined models that can be used to implement data harmonization and financial data integration.
-The 2022Q2 FIBO release consists of 290 ontologies (using 380 prefixes) that cover topics such as
+The 2022Q2 FIBO release consists of 290 ontologies using 380 prefixes
+(see <span class="citation" data-cites="garbaczReasoningFIBOOntology2022">[<a href="#ref-garbaczReasoningFIBOOntology2022" role="doc-biblioref">6</a>]</span> and <span class="citation" data-cites="allemangInfrastructureCollaborativeOntology2021">[<a href="#ref-allemangInfrastructureCollaborativeOntology2021" role="doc-biblioref">5</a>]</span> for details)
+that cover topics such as
 legal entities, contracts, agency, trusts, regulators, securities, loans, derivatives, etc.
 FIBO's reach and flexible ontological approach allow the integration of a wide variety of financial data,
 but it comes at the price of more complex representation.</p>
@@ -241,24 +256,26 @@ and compare it to the simplest possible semantic representation.
 I therefore illustrate the complexity of FIBO, and explain its flexibility along the way.
 I finish with some discussion and conclusions as to when FIBO can bring value to fintech KG projects.</p>
 <h2 data-number="1.1" id="open-source-project"><span class="header-section-number">1.1</span> Open Source Project</h2>
-<p>This example is available as open source at <a href="https://github.com/VladimirAlexiev/cb-fibo" class="uri">https://github.com/VladimirAlexiev/cb-fibo</a>
+<p>This example is available as open source at <a href="https://github.com/VladimirAlexiev/crunchbase-fibo" class="uri">https://github.com/VladimirAlexiev/crunchbase-fibo</a>
 and includes the following files:</p>
 <ul>
-<li>Makefile: orchestrate file generation with <code>make</code></li>
-<li>ipos-sample.csv: 4 sample CSV rows</li>
-<li>cb-model.ttl, cb-model.png: simple CB model (all CB data) and generated image</li>
-<li>ipos-agents.ttl, ipos-agents.png: part of model and generated image</li>
-<li>ipos-offering.png, ipos-offering.ttl: part of model and generated image</li>
-<li>ipos-financials.png, ipos-financials.ttl: part of model and generated image</li>
-<li>ipos-currencies.ttl, ipos-currencies.png: part of model and generated image</li>
-<li>ipos-fibo.ttl, ipos-fibo.png: full FIBO IPO model (concatenated) and generated image</li>
-<li>ipos-fibo.ru: OntoRefine SPARQL UPDATE transformation generated from the full FIBO IPO model</li>
-<li>common.h: C preprocessor file with SPARQL "functions" used in generating transformation</li>
-<li>prefixes.ttl, prefixes.rq: all used prefixes in Turtle and SPARQL format</li>
-<li>README.md, README.html: this writeup</li>
-<li>bibliography.bib, bibliography.html: bibliography source and rendered HTML</li>
-<li>acm-sig-proceedings-long-author-list.csl: bibliography style</li>
-<li>defaults.yaml: pandoc settings</li>
+<li><code>Makefile</code>: orchestrate file generation with <code>make</code></li>
+<li><code>ipos-sample.csv</code>: 4 sample CSV rows</li>
+<li><code>cb-model.ttl, cb-model.png</code>: simple CB model (all CB data) and generated image</li>
+<li><code>ipos-agents.ttl, ipos-agents.png</code>: part of model and generated image</li>
+<li><code>ipos-offering.png, ipos-offering.ttl</code>: part of model and generated image</li>
+<li><code>ipos-financials.png, ipos-financials.ttl</code>: part of model and generated image</li>
+<li><code>ipos-currencies.ttl, ipos-currencies.png</code>: part of model and generated image</li>
+<li><code>ipos-fibo.ttl, ipos-fibo.png</code>: full FIBO IPO model (concatenated) and generated image</li>
+<li><code>ipos-fibo.ru</code>: OntoRefine SPARQL UPDATE transformation generated from the full FIBO IPO model</li>
+<li><code>common.h</code>: C preprocessor file with SPARQL "functions" used in generating transformation</li>
+<li><code>prefixes.ttl, prefixes.rq</code>: all used prefixes in Turtle and SPARQL format</li>
+<li><code>README.md, README.html</code>: this writeup</li>
+<li><code>bibliography.bib, bibliography.html</code>: bibliography source and rendered HTML</li>
+<li><code>acm-sig-proceedings-long-author-list.csl</code>: bibliography style</li>
+<li><code>pandoc-defaults.yaml</code>: pandoc settings</li>
+<li><code>pandoc-header.html</code>: JavaScript to enable syntax highlighting</li>
+<li><code>css/*</code>: styles for syntax highlighting</li>
 </ul>
 <h1 data-number="2" id="crunchbase-data"><span class="header-section-number">2</span> Crunchbase Data</h1>
 <p>Crunchbase consists of 18 tables (available as CSV and a JSON API) that cover companies, universities, persons, financial transactions, events (conferences and workshops), etc.
@@ -818,15 +835,15 @@ see <a href="https://github.com/VladimirAlexiev/rdf2rml/blob/master/doc/rdf2spar
 <ul>
 <li>Simple data cleaning, eg</li>
 </ul>
-<pre><code>bind(REPLACE(?created_at,&#39; &#39;,&#39;T&#39;) as ?created_at_FIXDATE)</code></pre>
+<pre class="sparql"><code>bind(REPLACE(?created_at,&#39; &#39;,&#39;T&#39;) as ?created_at_FIXDATE)</code></pre>
 <ul>
 <li>Attach datatypes, eg</li>
 </ul>
-<pre><code>bind(strdt(?created_at_FIXDATE,xsd:dateTime) as ?created_at_FIXDATE_xsd_dateTime)</code></pre>
+<pre class="sparql"><code>bind(strdt(?created_at_FIXDATE,xsd:dateTime) as ?created_at_FIXDATE_xsd_dateTime)</code></pre>
 <ul>
 <li>Compute URLs, eg</li>
 </ul>
-<pre><code>bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/pricePerShare/USD&quot;)) as ?cb_ipo_uuid_pricePerShare_USD_URL)</code></pre>
+<pre class="sparql"><code>bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/pricePerShare/USD&quot;)) as ?cb_ipo_uuid_pricePerShare_USD_URL)</code></pre>
 <h1 data-number="5" id="conclusion"><span class="header-section-number">5</span> Conclusion</h1>
 <p>FIBO is good for capturing real-world complexity and integrating data from numerous sources, e.g.</p>
 <ul>
@@ -868,16 +885,22 @@ and CIDOC CRM Fundamental Relations search <span class="citation" data-cites="Al
 <h2 data-number="5.2" id="references"><span class="header-section-number">5.2</span> References</h2>
 <div id="refs" class="references csl-bib-body" role="list">
 <div id="ref-Alexiev-ENDORSE-2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Alexiev, V. 2023. <a href="https://drive.google.com/open?id=1Cq5o9th_P812paqGkDsaEomJyAmnypkD">Generation of declarative transformations from semantic models</a>. <em>European data conference on reference data and semantics (ENDORSE 2023)</em> (Mar. 2023).</div>
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Alexiev, V. 2023. <a href="https://drive.google.com/open?id=1Cq5o9th_P812paqGkDsaEomJyAmnypkD"><span class="nocase">Generation of Declarative Transformations from Semantic Models</span></a>. <em><span class="nocase">European Data Conference on Reference Data and Semantics (ENDORSE 2023)</span></em> (Mar. 2023).</div>
 </div>
 <div id="ref-Alexiev2012-CRM-search" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Alexiev, V. 2012. <a href="http://rawgit2.com/VladimirAlexiev/my/master/pubs/Alexiev2012-CRM-FR-search.pdf"><span class="nocase">Implementing CIDOC CRM Search Based on Fundamental Relations and OWLIM Rules</span></a>. <em>Workshop on semantic digital archives (SDA 2012), part of international conference on theory and practice of digital libraries (TPDL 2012)</em> (Paphos, Cyprus, Sep. 2012).</div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Alexiev, V. 2012. <a href="http://rawgit2.com/VladimirAlexiev/my/master/pubs/Alexiev2012-CRM-FR-search.pdf"><span class="nocase">Implementing CIDOC CRM Search Based on Fundamental Relations and OWLIM Rules</span></a>. <em><span class="nocase">Workshop on Semantic Digital Archives (SDA 2012), part of International Conference on Theory and Practice of Digital Libraries (TPDL 2012)</span></em> (Paphos, Cyprus, Sep. 2012).</div>
 </div>
 <div id="ref-Alexiev2016-rdfpuml-rdf2rml" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">Alexiev, V. 2016. <a href="http://rawgit2.com/VladimirAlexiev/my/master/pres/20161128-rdfpuml-rdf2rml/index-full.html"><span class="nocase">RDF by Example: rdfpuml for True RDF Diagrams, rdf2rml for R2RML Generation</span></a>. <em>Semantic web in libraries 2016 (SWIB 2016)</em> (Bonn, Germany, Nov. 2016).</div>
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">Alexiev, V. 2016. <a href="http://rawgit2.com/VladimirAlexiev/my/master/pres/20161128-rdfpuml-rdf2rml/index-full.html"><span class="nocase">RDF by Example: rdfpuml for True RDF Diagrams, rdf2rml for R2RML Generation</span></a>. <em><span class="nocase">Semantic Web in Libraries (SWIB)</span></em> (Bonn, Germany, Nov. 2016).</div>
 </div>
 <div id="ref-Alexiev2013-CRM-reasoning" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[4] </div><div class="csl-right-inline">Alexiev, V., Manov, D., Parvanova, J. and Petrov, S. 2013. <a href="http://ceur-ws.org/Vol-1117/paper8.pdf"><span class="nocase">Large-scale Reasoning with a Complex Cultural Heritage Ontology (CIDOC CRM)</span></a>. <em>Workshop practical experiences with CIDOC CRM and its extensions (CRMEX 2013) at TPDL 2013</em> (Valetta, Malta, Sep. 2013).</div>
+</div>
+<div id="ref-allemangInfrastructureCollaborativeOntology2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Allemang, D., Garbacz, P., Grądzki, P., Kendall, E. and Trypuz, R. 2021. <a href="https://doi.org/10.3233/FAIA210375"><span class="nocase">An Infrastructure for Collaborative Ontology Development: Lessons Learned from Developing the Financial Industry Business Ontology (FIBO)</span></a>. <em><span class="nocase">Formal Ontology in Information Systems: Proceedings of the Twelfth International Conference (FOIS 2021)</span></em>. F. Neuhaus and B. Brodaric, eds. <span>IOS Press</span>.</div>
+</div>
+<div id="ref-garbaczReasoningFIBOOntology2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Garbacz, P. and Kendall, E.F. 2022. <a href="https://ceur-ws.org/Vol-3337/semrec_paper1.pdf">Reasoning in the FIBO ontology - a challenge</a>. <em><span class="nocase">2nd Semantic Reasoning Evaluation Challenge and 3rd SeMantic Answer Type, Relation and Entity Prediction Tasks Challenge (SemREC/SMART@ISWC)</span></em> (2022).</div>
 </div>
 </div>
 </body>

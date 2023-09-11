@@ -21,7 +21,9 @@ The [Financial Industry Business Ontology](https://spec.edmcouncil.org/fibo/) (F
 is a family of ontologies and a reference model for representing data in the financial world using semantic technologies.
 It is used in fintech Knowledge Graph (KG) projects because it offers a comprehensive and principled approach to representing financial data,
 and a wide set of predefined models that can be used to implement data harmonization and financial data integration.
-The 2022Q2 FIBO release consists of 290 ontologies (using 380 prefixes) that cover topics such as
+The 2022Q2 FIBO release consists of 290 ontologies using 380 prefixes 
+(see [@garbaczReasoningFIBOOntology2022] and [@allemangInfrastructureCollaborativeOntology2021] for details) 
+that cover topics such as
 legal entities, contracts, agency, trusts, regulators, securities, loans, derivatives, etc.
 FIBO's reach and flexible ontological approach allow the integration of a wide variety of financial data,
 but it comes at the price of more complex representation.
@@ -40,21 +42,23 @@ I finish with some discussion and conclusions as to when FIBO can bring value to
 This example is available as open source at https://github.com/VladimirAlexiev/crunchbase-fibo
 and includes the following files:
 
-- Makefile: orchestrate file generation with `make`
-- ipos-sample.csv: 4 sample CSV rows
-- cb-model.ttl, cb-model.png: simple CB model (all CB data) and generated image
-- ipos-agents.ttl, ipos-agents.png: part of model and generated image
-- ipos-offering.png, ipos-offering.ttl: part of model and generated image
-- ipos-financials.png, ipos-financials.ttl: part of model and generated image
-- ipos-currencies.ttl, ipos-currencies.png: part of model and generated image
-- ipos-fibo.ttl, ipos-fibo.png: full FIBO IPO model (concatenated) and generated image
-- ipos-fibo.ru: OntoRefine SPARQL UPDATE transformation generated from the full FIBO IPO model
-- common.h: C preprocessor file with SPARQL "functions" used in generating transformation
-- prefixes.ttl, prefixes.rq: all used prefixes in Turtle and SPARQL format
-- README.md, README.html: this writeup
-- bibliography.bib, bibliography.html: bibliography source and rendered HTML
-- acm-sig-proceedings-long-author-list.csl: bibliography style
-- defaults.yaml: pandoc settings
+- `Makefile`: orchestrate file generation with `make`
+- `ipos-sample.csv`: 4 sample CSV rows
+- `cb-model.ttl, cb-model.png`: simple CB model (all CB data) and generated image
+- `ipos-agents.ttl, ipos-agents.png`: part of model and generated image
+- `ipos-offering.png, ipos-offering.ttl`: part of model and generated image
+- `ipos-financials.png, ipos-financials.ttl`: part of model and generated image
+- `ipos-currencies.ttl, ipos-currencies.png`: part of model and generated image
+- `ipos-fibo.ttl, ipos-fibo.png`: full FIBO IPO model (concatenated) and generated image
+- `ipos-fibo.ru`: OntoRefine SPARQL UPDATE transformation generated from the full FIBO IPO model
+- `common.h`: C preprocessor file with SPARQL "functions" used in generating transformation
+- `prefixes.ttl, prefixes.rq`: all used prefixes in Turtle and SPARQL format
+- `README.md, README.html`: this writeup
+- `bibliography.bib, bibliography.html`: bibliography source and rendered HTML
+- `acm-sig-proceedings-long-author-list.csl`: bibliography style
+- `pandoc-defaults.yaml`: pandoc settings
+- `pandoc-header.html`: JavaScript to enable syntax highlighting
+- `css/*`: styles for syntax highlighting
 
 # Crunchbase Data
 
@@ -442,15 +446,15 @@ generated from the FIBO IPO model that has the following parts:
 Binds come in several varieties:
 
 - Simple data cleaning, eg
-```
+```sparql
 bind(REPLACE(?created_at,' ','T') as ?created_at_FIXDATE)
 ```
 - Attach datatypes, eg
-```
+```sparql
 bind(strdt(?created_at_FIXDATE,xsd:dateTime) as ?created_at_FIXDATE_xsd_dateTime)
 ```
 - Compute URLs, eg
-```
+```sparql
 bind(iri(concat("cb/ipo/",?uuid,"/pricePerShare/USD")) as ?cb_ipo_uuid_pricePerShare_USD_URL)
 ```
 

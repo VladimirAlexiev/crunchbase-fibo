@@ -1,0 +1,11 @@
+<script src="css/highlight.min.js"></script>
+<script src="css/ttl.js"></script>
+<script src="css/sparql.js"></script>
+<script src="css/pie.js"></script>
+<script>
+  hljs.registerLanguage('ttl', ttl_highlight);
+  hljs.registerLanguage('sparql', sparql_highlight);
+  hljs.registerLanguage('pie', pie_highlight);
+  hljs.initHighlightingOnLoad();
+  hljs.highlightAll();
+</script>
