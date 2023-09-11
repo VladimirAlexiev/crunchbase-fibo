@@ -1,19 +1,19 @@
 from: markdown+pipe_tables+autolink_bare_uris-smart+citations
 to: html
-css:
-  - css/default.min.css
-  - css/onto-hljs.css
-include-in-header: pandoc-header.html
 strip-comments: true
 toc: true
 number-sections: true
 wrap: preserve
 standalone: true
-embed-resources: false
+embed-resources: false # https://rawgit2.com/VladimirAlexiev/crunchbase-fibo/main/README.html serves all resources properly
 citeproc: true
+include-in-header: pandoc-header.html # JavaScript for highlighting
+css:
+  - css/default.min.css
+  - css/onto-hljs.css
 metadata:
   maxwidth: 100%
-  document-css: true  # re-enable default styles (`css` disables them)
+  document-css: true  # `css` disables default styles, re-enable them
   bibliography: bibliography.bib
   csl: acm-sig-proceedings-long-author-list.csl
   link-citations: true
