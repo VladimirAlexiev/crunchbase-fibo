@@ -16,3 +16,4 @@ metadata:
   document-css: true  # re-enable default styles (`css` disables them)
   bibliography: bibliography.bib
   csl: acm-sig-proceedings-long-author-list.csl
+  link-citations: true

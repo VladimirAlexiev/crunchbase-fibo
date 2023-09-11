@@ -12,7 +12,6 @@ keywords:
 - fintech
 - semantic modeling
 - ontologies
-link-citations: true
 ---
 
 # Introduction
