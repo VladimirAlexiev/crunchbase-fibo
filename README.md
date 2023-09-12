@@ -21,7 +21,7 @@ is a family of ontologies and a reference model for representing data in the fin
 It is used in fintech Knowledge Graph (KG) projects because it offers a comprehensive and principled approach to representing financial data,
 and a wide set of predefined models that can be used to implement data harmonization and financial data integration.
 The 2022Q2 FIBO release consists of 290 ontologies using 380 prefixes 
-(see [@garbaczReasoningFIBOOntology2022] and [@allemangInfrastructureCollaborativeOntology2021] for details) 
+(see [@allemangInfrastructureCollaborativeOntology2021; @garbaczReasoningFIBOOntology2022] for details) 
 that cover topics such as
 legal entities, contracts, agency, trusts, regulators, securities, loans, derivatives, etc.
 FIBO's reach and flexible ontological approach allow the integration of a wide variety of financial data,
@@ -483,7 +483,7 @@ Should you use FIBO in fintech applications?
   - Ability of data consumers (query writers) to navigate the complex graph efficiently
   - Possibility to introduce some query abstractions or "facades" to simplify querying.
     As such examples I can point out to GraphQL (e.g. as implemented over RDF by [Ontotext Semantic Objects](https://platform.ontotext.com/semantic-objects/)
-    and CIDOC CRM Fundamental Relations search [@Alexiev2012-CRM-search] [@Alexiev2013-CRM-reasoning].
+    and CIDOC CRM Fundamental Relations search [@Alexiev2012-CRM-search; @Alexiev2013-CRM-reasoning].
 
 Such calls rest ultimately with the Semantic Data Architect, who should evaluate the tradeoffs of different representations.
 

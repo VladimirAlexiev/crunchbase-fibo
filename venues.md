@@ -39,7 +39,11 @@ Venues (Workshops and special issues)
       - Industry and Applications Track has only one round of submissions. Submissions: October 22, 2023. 12 pages (long) or 6 pages (short), plus unlimited space for references. https://icde2024.github.io/CFP_industry.html , https://cmt3.research.microsoft.com/ICDEIndustrial2024
       - Workshop proposals: 1 September 2023
   - category: http://www.wikicfp.com/cfp/call?conference=fintech
-    - 8th International Conference on Data Mining and Big Data (DMBD 2023), December 9th-12th, 2023, China. Topic: FinTech Applications, Financial intelligent system, Financial Large-scale model. Special session https://www.iasei.org/dmbd2023/specialsession : SS5: Advances in Big-Model empowered Fintech and Quantitative Investment. https://www.iasei.org/dmbd2023/deadlines : September 28th, 2023. https://www.iasei.org/dmbd2023/submission : 10-15 pages)
+    - 8th International Conference on Data Mining and Big Data (DMBD 2023), December 9th-12th, 2023, China. Topic: FinTech Applications, Financial intelligent system, Financial Large-scale model. Special session https://www.iasei.org/dmbd2023/specialsession : SS5: Advances in Big-Model empowered Fintech and Quantitative Investment. https://www.iasei.org/dmbd2023/deadlines : September 28th, 2023. https://www.iasei.org/dmbd2023/submission : 10-15 pages, double-blind (anonymized), to be published in Springer Communications in Computer and Information Science (CCIS)
+      https://resource-cms.springernature.com/springer-cms/rest/v1/content/19242230/data/v11 Instructions and example
+      https://www.iasei.org/dmbd2023/files/latex_template.zip Latex
+      https://resource-cms.springernature.com/springer-cms/rest/v1/content/19238648/data/v6 Latex
+      https://www.overleaf.com/latex/templates/springer-lecture-notes-in-computer-science/kzwwpvhwnvfj
 - Finance and Economics on the Semantic Web (FEOSW)
   - FEOSW+RED+SBPM 2012: http://ceur-ws.org/Vol-862/,
     https://www.mdpi.com/journal/futureinternet/special_issues/feosw
