@@ -1,4 +1,4 @@
-from: markdown+pipe_tables+autolink_bare_uris-smart+citations
+from: markdown+pipe_tables+autolink_bare_uris+citations+lists_without_preceding_blankline-smart
 to: html
 strip-comments: true
 toc: true

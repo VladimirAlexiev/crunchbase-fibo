@@ -43,7 +43,7 @@ Venues (Workshops and special issues)
       https://resource-cms.springernature.com/springer-cms/rest/v1/content/19242230/data/v11 Instructions and example
       https://www.iasei.org/dmbd2023/files/latex_template.zip Latex
       https://resource-cms.springernature.com/springer-cms/rest/v1/content/19238648/data/v6 Latex
-      https://www.overleaf.com/latex/templates/springer-lecture-notes-in-computer-science/kzwwpvhwnvfj
+      https://www.overleaf.com/latex/templates/springer-conference-proceedings-template-updated-2022-01-12/wcvbtmwtykqj
 - Finance and Economics on the Semantic Web (FEOSW)
   - FEOSW+RED+SBPM 2012: http://ceur-ws.org/Vol-862/,
     https://www.mdpi.com/journal/futureinternet/special_issues/feosw
