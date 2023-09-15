@@ -4,8 +4,9 @@
 <script src="css/pie.js"></script>
 <script>
   hljs.registerLanguage('ttl', ttl_highlight);
+  hljs.registerLanguage('turtle', ttl_highlight);
   hljs.registerLanguage('sparql', sparql_highlight);
   hljs.registerLanguage('pie', pie_highlight);
-  hljs.initHighlightingOnLoad();
+  // hljs.initHighlightingOnLoad(); // Deprecated as of 10.6.0. Use highlightAll() now.
   hljs.highlightAll();
 </script>
