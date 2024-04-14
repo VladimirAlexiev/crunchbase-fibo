@@ -349,27 +349,32 @@ It's a complex graph:
 - It has 25 nodes, of which 11 are shared with other IPOs (the currencies and currency codes) and 14 are per-IPO
 - It has 136 triples; compare to the simplest model that uses 1 node and 22 triples
 <!-- cat prefixes.ttl ipos-fibo.ttl | riot -syntax ttl -out ntriples | grep -vi plantuml | wc -l -->
-- It uses terms from 16 FIBO ontologies (see [prefixes.ttl](prefixes.ttl)).
+- It uses terms from 13 FIBO ontologies and 8 from the Object Managemnt Group (OMG)'s Commons Ontology Library (see [prefixes.ttl](prefixes.ttl)).
 
 ```ttl
 @prefix cb:   <https://ontotext.com/crunchbase/ontology/> .
 
-@prefix fibo-fbc-fct-mkt:  <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/> .
-@prefix fibo-fbc-fct-ra:   <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/> .
-@prefix fibo-fbc-fi-fi:    <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/> .
+@prefix cmns-cds: <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col: <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-dsg: <https://www.omg.org/spec/Commons/Designators/> .
+@prefix cmns-dt: <https://www.omg.org/spec/Commons/DatesAndTimes/> .
+@prefix cmns-cxtdsg: <https://www.omg.org/spec/Commons/ContextualDesignators/> .
+@prefix cmns-id: <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix cmns-qtu: <https://www.omg.org/spec/Commons/QuantitiesAndUnits/> .
+@prefix cmns-rlcmp: <https://www.omg.org/spec/Commons/RolesAndCompositions/> .
+@prefix fibo-fbc-fct-mkt: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/> .
+@prefix fibo-fbc-fct-ra:  <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/> .
+@prefix fibo-fbc-fi-fi:   <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/> .
 @prefix fibo-fbc-pas-fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
-@prefix fibo-fnd-acc-cur:  <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/> .
-@prefix fibo-fnd-agr-ctr:  <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/> .
-@prefix fibo-fnd-arr-id:   <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/> .
-@prefix fibo-fnd-dt-fd:    <https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/> .
-@prefix fibo-fnd-rel-rel:  <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
-@prefix fibo-fnd-utl-alx:  <https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/Analytics/> .
-@prefix fibo-ind-mkt-bas:  <https://spec.edmcouncil.org/fibo/ontology/IND/MarketIndices/BasketIndices/> .
-@prefix fibo-sec-eq-eq:    <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/> .
-@prefix fibo-sec-sec-id:   <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/> .
+@prefix fibo-fnd-acc-cur: <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/> .
+@prefix fibo-fnd-agr-ctr: <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/> .
+@prefix fibo-fnd-arr-id:  <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/> .
+@prefix fibo-fnd-rel-rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix fibo-ind-mkt-bas: <https://spec.edmcouncil.org/fibo/ontology/IND/MarketIndices/BasketIndices/> .
+@prefix fibo-sec-eq-eq:   <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/> .
+@prefix fibo-sec-sec-id:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/> .
 @prefix fibo-sec-sec-iss:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/> .
-@prefix fibo-sec-sec-lst:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/> .
-@prefix lcc-lr:            <https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/> .
+@prefix fibo-sec-sec-lst: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/> .
 ```
 
 What is the reason for this complexity?
