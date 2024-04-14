@@ -708,17 +708,17 @@ And for IPOs that use the same currency for their 3 financials, only 1 pair of n
 But CB uses ISO 4217 standard currency codes, and FIBO already includes such data in the ontology <code>FND/Accounting/ISO4217-CurrencyCodes.rdf</code>, e.g.:</p>
 <pre class="ttl"><code>fibo-fnd-acc-4217:USD
   rdf:type           fibo-fnd-acc-cur:CurrencyIdentifier , owl:NamedIndividual ;
-  lcc-lr:hasTag      &quot;USD&quot; ;
+  fibo-fnd-rel-rel:hasTag      &quot;USD&quot; ;
   rdfs:label         &quot;USD&quot; ;
-  lcc-lr:denotes     fibo-fnd-acc-4217:USDollar ;
-  lcc-lr:identifies  fibo-fnd-acc-4217:USDollar ;
+  cmns-dsg:denotes     fibo-fnd-acc-4217:USDollar ;
+  cmns-id:identifies  fibo-fnd-acc-4217:USDollar ;
 
 fibo-fnd-acc-4217:USDollar
   rdf:type                       fibo-fnd-acc-cur:Currency , owl:NamedIndividual ;
-  lcc-lr:hasName                 &quot;US Dollar&quot; .
+  cmns-dsg:hasName                 &quot;US Dollar&quot; .
   rdfs:label                     &quot;US Dollar&quot; ;
   fibo-fnd-acc-cur:hasNumericCode &quot;840&quot; ;
-  lcc-cr:isUsedBy                lcc-3166-1:VirginIslandsBritish ...</code></pre>
+  cmns-cxtdsg:isUsedBy                lcc-3166-1:VirginIslandsBritish ...</code></pre>
 <p>So why didn't I reuse the FIBO currency nodes and instead made CB currency nodes?
 The reason is subtle and is described in <a href="https://github.com/edmcouncil/fibo/issues/1816">fibo/issues/1816</a>:</p>
 <ul>
@@ -738,7 +738,7 @@ The EDM Council has agreed to change the node names a bit to:</p>
 <pre class="sparql"><code>construct {
   ?curr owl:sameAs ?currAsCode
 } where {
-  ?code a fibo-fnd-acc-cur:CurrencyIdentifier; lcc-lr:hasTag ?c; lcc-lr:identifies ?curr.
+  ?code a fibo-fnd-acc-cur:CurrencyIdentifier; fibo-fnd-rel-rel:hasTag ?c; cmns-id:identifies ?curr.
   bind(iri(concat(str(fibo-fnd-acc-4217:),&quot;Currency-&quot;,?c)) as ?currAsCode)
 }</code></pre>
 <p>This will effectively add alias URLs for each currency (the two <code>sameAs</code> URLs shown above),
@@ -788,12 +788,12 @@ Concatenating any Turtle files produces a valid turtle file, since <code>@prefix
 It mirrors the simplicity of semantic data integration by "simply" converting any kind of data to RDF, using consistent URLs, and "pouring" all data into a semantic repository.</p>
 <p>I have used some <code>rdfpuml</code> (PlantUML) layout instructions in the models to improve the look of the overall model.
 These specify the direction and length of a few arrows, and set colored circles for the classes (<code>stereotype</code>)</p>
-<pre class="ttl"><code>lcc-lr:identifies              puml:arrow puml:up.
-fibo-fnd-rel-rel:hasIdentity   puml:arrow puml:up.
-fibo-fnd-utl-alx:hasArgument   puml:arrow puml:up.
+<pre class="ttl"><code>cmns-id:identifies              puml:arrow puml:up.
+cmns-rlcmp:isPlayedBy   puml:arrow puml:up.
+cmns-qtu:hasArgument   puml:arrow puml:up.
 fibo-fnd-acc-cur:isPriceFor    puml:arrow puml:up.
 fibo-fnd-rel-rel:isIssuedBy    puml:arrow puml:up.
-fibo-fnd-rel-rel:appliesTo     puml:arrow puml:up.
+cmns-cxtdsg:appliesTo     puml:arrow puml:up.
 fibo-fbc-fi-fi:isDenominatedIn puml:arrow puml:down-4.
 
 fibo-fbc-fct-mkt:Exchange             puml:stereotype &quot;(X,lightblue)&quot;.  # also fibo-fbc-fct-ra:RegistrationAuthority
@@ -808,9 +808,9 @@ fibo-sec-sec-id:TickerSymbol          puml:stereotype &quot;(T,lightgreen)&quot;
 fibo-sec-sec-iss:PublicOffering       puml:stereotype &quot;(O,yellow)&quot;.
 fibo-sec-sec-lst:ListedSecurity       puml:stereotype &quot;(S,yellow)&quot;.     # also fibo-sec-eq-eq:Share
 fibo-sec-sec-lst:Listing              puml:stereotype &quot;(L,yellow)&quot;.
-lcc-lr:CodeSet                        puml:stereotype &quot;(C,lightgreen)&quot;.
-lcc-lr:IdentificationScheme           puml:stereotype &quot;(S,lightgreen)&quot;. # also lcc-lr:CodeSet
-lcc-lr:Identifier                     puml:stereotype &quot;(I,lightgreen)&quot;.</code></pre>
+cmns-cds:CodeSet                        puml:stereotype &quot;(C,lightgreen)&quot;.
+cmns-id:IdentificationScheme           puml:stereotype &quot;(S,lightgreen)&quot;. # also cmns-cds:CodeSet
+cmns-id:Identifier                     puml:stereotype &quot;(I,lightgreen)&quot;.</code></pre>
 <h2 data-number="4.7" id="generating-semantic-transformation"><span class="header-section-number">4.7</span> Generating Semantic Transformation</h2>
 <p>Although the FIBO IPO model is considerably more complex than the CB IPO model,
 we can use the <code>rdf2sparql</code> script (part of the <a href="https://github.com/VladimirAlexiev/rdf2rml">RDF by Example</a> open source project)

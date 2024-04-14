@@ -288,17 +288,17 @@ But CB uses ISO 4217 standard currency codes, and FIBO already includes such dat
 ```ttl
 fibo-fnd-acc-4217:USD
   rdf:type           fibo-fnd-acc-cur:CurrencyIdentifier , owl:NamedIndividual ;
-  lcc-lr:hasTag      "USD" ;
+  fibo-fnd-rel-rel:hasTag      "USD" ;
   rdfs:label         "USD" ;
-  lcc-lr:denotes     fibo-fnd-acc-4217:USDollar ;
-  lcc-lr:identifies  fibo-fnd-acc-4217:USDollar ;
+  cmns-dsg:denotes     fibo-fnd-acc-4217:USDollar ;
+  cmns-id:identifies  fibo-fnd-acc-4217:USDollar ;
 
 fibo-fnd-acc-4217:USDollar
   rdf:type                       fibo-fnd-acc-cur:Currency , owl:NamedIndividual ;
-  lcc-lr:hasName                 "US Dollar" .
+  cmns-dsg:hasName                 "US Dollar" .
   rdfs:label                     "US Dollar" ;
   fibo-fnd-acc-cur:hasNumericCode "840" ;
-  lcc-cr:isUsedBy                lcc-3166-1:VirginIslandsBritish ...
+  cmns-cxtdsg:isUsedBy                lcc-3166-1:VirginIslandsBritish ...
 ```
 
 So why didn't I reuse the FIBO currency nodes and instead made CB currency nodes?
@@ -330,7 +330,7 @@ Generated with the following SPARQL query:
 construct {
   ?curr owl:sameAs ?currAsCode
 } where {
-  ?code a fibo-fnd-acc-cur:CurrencyIdentifier; lcc-lr:hasTag ?c; lcc-lr:identifies ?curr.
+  ?code a fibo-fnd-acc-cur:CurrencyIdentifier; fibo-fnd-rel-rel:hasTag ?c; cmns-id:identifies ?curr.
   bind(iri(concat(str(fibo-fnd-acc-4217:),"Currency-",?c)) as ?currAsCode)
 }
 ```
@@ -395,12 +395,12 @@ I have used some `rdfpuml` (PlantUML) layout instructions in the models to impro
 These specify the direction and length of a few arrows, and set colored circles for the classes (`stereotype`)
 
 ```ttl
-lcc-lr:identifies              puml:arrow puml:up.
-fibo-fnd-rel-rel:hasIdentity   puml:arrow puml:up.
-fibo-fnd-utl-alx:hasArgument   puml:arrow puml:up.
+cmns-id:identifies              puml:arrow puml:up.
+cmns-rlcmp:isPlayedBy   puml:arrow puml:up.
+cmns-qtu:hasArgument   puml:arrow puml:up.
 fibo-fnd-acc-cur:isPriceFor    puml:arrow puml:up.
 fibo-fnd-rel-rel:isIssuedBy    puml:arrow puml:up.
-fibo-fnd-rel-rel:appliesTo     puml:arrow puml:up.
+cmns-cxtdsg:appliesTo     puml:arrow puml:up.
 fibo-fbc-fi-fi:isDenominatedIn puml:arrow puml:down-4.
 
 fibo-fbc-fct-mkt:Exchange             puml:stereotype "(X,lightblue)".  # also fibo-fbc-fct-ra:RegistrationAuthority
@@ -415,9 +415,9 @@ fibo-sec-sec-id:TickerSymbol          puml:stereotype "(T,lightgreen)".
 fibo-sec-sec-iss:PublicOffering       puml:stereotype "(O,yellow)".
 fibo-sec-sec-lst:ListedSecurity       puml:stereotype "(S,yellow)".     # also fibo-sec-eq-eq:Share
 fibo-sec-sec-lst:Listing              puml:stereotype "(L,yellow)".
-lcc-lr:CodeSet                        puml:stereotype "(C,lightgreen)".
-lcc-lr:IdentificationScheme           puml:stereotype "(S,lightgreen)". # also lcc-lr:CodeSet
-lcc-lr:Identifier                     puml:stereotype "(I,lightgreen)".
+cmns-cds:CodeSet                        puml:stereotype "(C,lightgreen)".
+cmns-id:IdentificationScheme           puml:stereotype "(S,lightgreen)". # also cmns-cds:CodeSet
+cmns-id:Identifier                     puml:stereotype "(I,lightgreen)".
 ```
 
 ## Generating Semantic Transformation

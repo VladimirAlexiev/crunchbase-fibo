@@ -16,16 +16,16 @@
 <cb/ipo/(uuid)/marketCap/(valuation_price_currency_code)> a fibo-ind-mkt-bas:MarketCapitalization;
   rdfs:label "Market Cap (valuation) at the time of IPO (permalink) in local currency";
   fibo-ind-mkt-bas:hasMarketCapitalizationValue <cb/ipo/(uuid)/marketCapValue/(valuation_price_currency_code)>;
-  fibo-fnd-utl-alx:hasArgument <cb/ipo/(uuid)/pricePerShare/(share_price_currency_code)>;
-  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
-  fibo-fnd-rel-rel:appliesTo <cb/agent/(org_uuid)/issuer>.
+  cmns-qtu:hasArgument <cb/ipo/(uuid)/pricePerShare/(share_price_currency_code)>;
+  cmns-dt:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  cmns-cxtdsg:appliesTo <cb/agent/(org_uuid)/issuer>.
 
 <cb/ipo/(uuid)/marketCap/USD> a fibo-ind-mkt-bas:MarketCapitalization;
   rdfs:label "Market Cap (valuation) at the time of IPO (permalink) in USD";
   fibo-ind-mkt-bas:hasMarketCapitalizationValue <cb/ipo/(uuid)/marketCapValue/USD>;
-  fibo-fnd-utl-alx:hasArgument <cb/ipo/(uuid)/pricePerShare/USD>;
-  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
-  fibo-fnd-rel-rel:appliesTo <cb/agent/(org_uuid)/issuer>.
+  cmns-qtu:hasArgument <cb/ipo/(uuid)/pricePerShare/USD>;
+  cmns-dt:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  cmns-cxtdsg:appliesTo <cb/agent/(org_uuid)/issuer>.
 
 <cb/ipo/(uuid)/marketCapValue/(valuation_price_currency_code)> a fibo-fnd-acc-cur:MonetaryAmount;
   rdfs:label "Monetary amount of Market Cap (valuation) in local currency";
@@ -41,14 +41,14 @@
   rdfs:label "Price per share at the time of IPO (permalink) in local currency";
   fibo-fnd-acc-cur:hasAmount '(share_price)'^^xsd:decimal;
   fibo-fnd-acc-cur:hasCurrency <cb/currency/(share_price_currency_code)>;
-  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  cmns-dt:hasObservedDateTime '(went_public_on)'^^xsd:date;
   fibo-fnd-acc-cur:isPriceFor <cb/ipo/(uuid)/share>.
 
 <cb/ipo/(uuid)/pricePerShare/USD> a fibo-sec-eq-eq:PricePerShare;
   rdfs:label "Price per share at the time of IPO (permalink) in USD";
   fibo-fnd-acc-cur:hasAmount '(share_price_usd)'^^xsd:decimal;
   fibo-fnd-acc-cur:hasCurrency <cb/currency/USD>;
-  fibo-fnd-dt-fd:hasObservedDateTime '(went_public_on)'^^xsd:date;
+  cmns-dt:hasObservedDateTime '(went_public_on)'^^xsd:date;
   fibo-fnd-acc-cur:isPriceFor <cb/ipo/(uuid)/share>.
 
 <cb/currency/USD> a fibo-fnd-acc-cur:Currency.
