@@ -19,7 +19,7 @@ What journals (and special issues), conferences (and workshops) is this appropri
     - [EDBT/ICDT](#edbticdt)
     - [MDPI Journals](#mdpi-journals)
     - [Asked](#asked)
-        - [Transactions on Graph Data and Knowledge](#transactions-on-graph-data-and-knowledge)
+        - [Transactions on Graph Data and Knowledge ](#transactions-on-graph-data-and-knowledge)
         - [Journal of Banking Regulation](#journal-of-banking-regulation)
 
 <!-- markdown-toc end -->
@@ -45,34 +45,34 @@ What journals (and special issues), conferences (and workshops) is this appropri
 Where have FIBO papers been submitted below?
 Looking for [fibo ontology](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=fibo+ontology&btnG=) and ["fibo"](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22fibo%22&btnG=) on Google Scholar:
 
-- 2013. Bennett, Mike. The financial industry business ontology: Best practice for big data.
+- 2013: Bennett, Mike. The financial industry business ontology: Best practice for big data.
   **Journal of Banking Regulation** 14.3-4: 255-268.
-- 2014. M Bennett. Adopting and Extending REA Terms in the Financial Industry Business Ontology: A Case Study.
+- 2014: M Bennett. Adopting and Extending REA Terms in the Financial Industry Business Ontology: A Case Study.
   **Value Modeling and Business Ontologies** (VMBO)
-- 2015. M Bennett. Defining Equity and Debt using REA Claim Semantics.
+- 2015: M Bennett. Defining Equity and Debt using REA Claim Semantics.
   **Value Modeling and Business Ontologies** (VMBO)
-- 2017. Browne, O., Krdzavac, N., O'Reilly, P. and Hutchinson, M. Semantic ontologies and financial reporting: An application of the FIBO.
+- 2017: Browne, O., Krdzavac, N., O'Reilly, P. and Hutchinson, M. Semantic ontologies and financial reporting: An application of the FIBO.
   Joint Ontology Workshops, Episode 3: The Tyrolean Autumn of Ontology, Bozen-Bolzano, Italy, September 21–23, pp. 1-4.
-- 2017. Petrova, G. G., A. F. Tuzovsky, and Nataliya Valerievna Aksenova. Application of the Financial Industry Business Ontology (FIBO) for development of a financial organization ontology. 
+- 2017: Petrova, G. G., A. F. Tuzovsky, and Nataliya Valerievna Aksenova. Application of the Financial Industry Business Ontology (FIBO) for development of a financial organization ontology. 
   Journal of Physics: Conference Series. Vol. 803. No. 1. IOP Publishing
-- 2017. B Bell, E Kendall. Leveraging FIBO with semantic analysis to perform on-boarding, KYC and CDD
+- 2017: B Bell, E Kendall. Leveraging FIBO with semantic analysis to perform on-boarding, KYC and CDD
   Ontology Summit (ontolog)
-- 2018. M Bennett. Providing Conceptual Disambiguation for Terms in Reusable Ontologies: A Case Study from FIBO.
+- 2018: M Bennett. Providing Conceptual Disambiguation for Terms in Reusable Ontologies: A Case Study from FIBO.
   Joint Ontology WOrkshops (JOWO 2018), a pool of satellite events of FOIS.
-- 2018. RA Nehmer, M Bennett. Using Mathematical Model Theory to Align Conceptual and Operational Ontologies in FIBO. 
+- 2018: RA Nehmer, M Bennett. Using Mathematical Model Theory to Align Conceptual and Operational Ontologies in FIBO. 
   12th International Workshop on **Value Modeling and Business Ontologies** (VMBO)
-- 2020. Alzamil, Zamil, Deniz Appelbaum, and Robert Nehmer. An ontological artifact for classifying social media: Text mining analysis for financial data.
+- 2020: Alzamil, Zamil, Deniz Appelbaum, and Robert Nehmer. An ontological artifact for classifying social media: Text mining analysis for financial data.
   **International Journal of Accounting Information Systems** 38: 100469.
-- 2020. Ismail El Maarouf, Youness Mansar, Virginie Mouilleron, and Dialekti Valsamou-Stanislawski. The FinSim 2020 Shared Task: Learning Semantic Representations for the Financial Domain. 
+- 2020: Ismail El Maarouf, Youness Mansar, Virginie Mouilleron, and Dialekti Valsamou-Stanislawski. The FinSim 2020 Shared Task: Learning Semantic Representations for the Financial Domain. 
   Second Workshop on **Financial Technology and Natural Language Processing**. Kyoto, Japan, 81–86. https://www.aclweb.org/anthology/2020.finnlp-1.13
-- 2021. Stepišnik Perdih, Timen, Senja Pollak, and Blaž Škrlj. "JSI at the finsim-2 task: ontology-augmented financial concept classification." 
+- 2021: Stepišnik Perdih, Timen, Senja Pollak, and Blaž Škrlj. "JSI at the finsim-2 task: ontology-augmented financial concept classification." 
   Shared task on Learning Semantic Similarities for the Financial Domain (FinSim-2 task).
   Companion Proceedings of the Web Conference.
-- 2021. Wasielewska-Michniewska, Katarzyna, et al. Application of Ontologies in the Enterprise—Overview and Critical Analysis.
+- 2021: Wasielewska-Michniewska, Katarzyna, et al. Application of Ontologies in the Enterprise—Overview and Critical Analysis.
   3rd International Conference on Information Management and Machine Intelligence (ICIMMI). Singapore: Springer Nature Singapore, 
-- 2022. Dean Allemang, Pawel Garbacz, Przemyslaw Gradzki, Elisa Kendall, Robert Trypuz. An infrastructure for collaborative ontology development: Lessons Learned from Developing FIBO.
+- 2022: Dean Allemang, Pawel Garbacz, Przemyslaw Gradzki, Elisa Kendall, Robert Trypuz. An infrastructure for collaborative ontology development: Lessons Learned from Developing FIBO.
   12 **International Conference Formal Ontology in Information Systems** (FOIS). Vol. 344. IOS Press
-- 2022. Garbacz, Paweł and Elisa F. Kendall. Reasoning in the FIBO ontology - A challenge (short paper). 
+- 2022: Garbacz, Paweł and Elisa F. Kendall. Reasoning in the FIBO ontology - A challenge (short paper). 
   SemREC/SMART @ ISWC
   
 ## Upcoming Deadlines
