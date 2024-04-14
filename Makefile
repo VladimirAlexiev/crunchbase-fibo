@@ -3,8 +3,8 @@ PNG = $(patsubst %.ttl, %.png, $(filter-out prefixes.ttl, $(wildcard *.ttl)))
 all: $(PNG) README.html bibliography.html ipos-fibo.ttl ipos-fibo.ru
 
 %.png: %.ttl
-	rdfpuml.bat $*.ttl
-	puml.bat $*.puml
+	rdfpuml $*.ttl
+	plantuml $*.puml
 	rm $*.puml
 
 %.html: %.md

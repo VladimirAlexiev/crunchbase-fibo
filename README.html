@@ -172,6 +172,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -196,21 +197,19 @@
   <script src="css/pie.js"></script>
   <script>
     hljs.registerLanguage('ttl', ttl_highlight);
+    hljs.registerLanguage('turtle', ttl_highlight);
     hljs.registerLanguage('sparql', sparql_highlight);
     hljs.registerLanguage('pie', pie_highlight);
-    hljs.initHighlightingOnLoad();
+    // hljs.initHighlightingOnLoad(); // Deprecated as of 10.6.0. Use highlightAll() now.
     hljs.highlightAll();
   </script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
 <h1 class="title">Exploring FIBO Complexity With Crunchbase</h1>
 <p class="subtitle">Representing Crunchbase IPOs in FIBO</p>
 <p class="author">Vladimir Alexiev</p>
-<p class="date">5-Sep-2023</p>
+<p class="date">14-Apr-2024</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -227,8 +226,9 @@
 <li><a href="#financial-factors" id="toc-financial-factors"><span class="toc-section-number">4.3</span> Financial Factors</a></li>
 <li><a href="#currencies" id="toc-currencies"><span class="toc-section-number">4.4</span> Currencies</a></li>
 <li><a href="#overall-fibo-ipos-model" id="toc-overall-fibo-ipos-model"><span class="toc-section-number">4.5</span> Overall FIBO IPOs Model</a></li>
-<li><a href="#how-i-made-the-overall-model" id="toc-how-i-made-the-overall-model"><span class="toc-section-number">4.6</span> How I Made the Overall Model?</a></li>
-<li><a href="#generating-semantic-transformation" id="toc-generating-semantic-transformation"><span class="toc-section-number">4.7</span> Generating Semantic Transformation</a></li>
+<li><a href="#fibo-changes" id="toc-fibo-changes"><span class="toc-section-number">4.6</span> FIBO Changes</a></li>
+<li><a href="#how-i-made-the-overall-model" id="toc-how-i-made-the-overall-model"><span class="toc-section-number">4.7</span> How I Made the Overall Model?</a></li>
+<li><a href="#generating-semantic-transformation" id="toc-generating-semantic-transformation"><span class="toc-section-number">4.8</span> Generating Semantic Transformation</a></li>
 </ul></li>
 <li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">5</span> Conclusion</a>
 <ul>
@@ -238,11 +238,12 @@
 </ul>
 </nav>
 <h1 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<p>(<a href="https://rawgit2.com/VladimirAlexiev/crunchbase-fibo/main/README.html">Read this as HTML</a>)</p>
 <p>The <a href="https://spec.edmcouncil.org/fibo/">Financial Industry Business Ontology</a> (FIBO) by the Enterprise Data Management Council (EDMC)
 is a family of ontologies and a reference model for representing data in the financial world using semantic technologies.
 It is used in fintech Knowledge Graph (KG) projects because it offers a comprehensive and principled approach to representing financial data,
 and a wide set of predefined models that can be used to implement data harmonization and financial data integration.
-The 2022Q2 FIBO release consists of 290 ontologies using 380 prefixes
+The 2022Q2 FIBO release consisted of 290 ontologies using 380 prefixes
 (see <span class="citation" data-cites="allemangInfrastructureCollaborativeOntology2021 garbaczReasoningFIBOOntology2022">[<a href="#ref-allemangInfrastructureCollaborativeOntology2021" role="doc-biblioref">5</a>, <a href="#ref-garbaczReasoningFIBOOntology2022" role="doc-biblioref">6</a>]</span> for details)
 that cover topics such as
 legal entities, contracts, agency, trusts, regulators, securities, loans, derivatives, etc.
@@ -613,7 +614,7 @@ including the model source <code>cb-model.ttl</code> and timing (performance) in
 <p><strong>Important</strong>: Please note that this model covers all of CB, not just CB IPOs.
 The IPO class (node) is shown with red border.</p>
 <h1 data-number="4" id="fibo-model-of-crunchbase-ipos"><span class="header-section-number">4</span> FIBO Model of Crunchbase IPOs</h1>
-<p>Now I turn to representing IPOs in FIBO by using the ontologies from the FIBO 2022Q2 release (see gist <a href="https://gist.github.com/VladimirAlexiev/a4d9d715c5d079378384f3a30c8ce061">Converting FIBO from RDF to Turtle</a>).</p>
+<p>Now I turn to representing IPOs in FIBO by using the ontologies from the FIBO 2024Q1 release (see gist <a href="https://gist.github.com/VladimirAlexiev/a4d9d715c5d079378384f3a30c8ce061">Converting FIBO from RDF to Turtle</a>).</p>
 <p>I use the following colors in the diagrams below.</p>
 <ul>
 <li>lightblue: agents (Offeror=Issuer, Exchange=RegistrationAuthority)</li>
@@ -653,13 +654,13 @@ followed by an overall model diagram, and a binding of the colors to specific RD
 </ul>
 <p><img src="ipos-offering.png" /></p>
 <p>Please note that <code>PublicOffering</code> includes a number of non-FIBO properties (i.e. CB custom properties):</p>
-<pre class="ttl"><code>  cb:uuid &#39;(uuid)&#39;;
-  cb:name &#39;(name)&#39;;
-  cb:permalink &#39;(permalink)&#39;;
-  cb:url &#39;(cb_url)&#39;^^xsd:anyURI;
-  cb:rank &#39;(rank)&#39;^^xsd:integer;
-  cb:createdAt &#39;fixDate(created_at)&#39;^^xsd:dateTime;
-  cb:updatedAt &#39;fixDate(updated_at)&#39;^^xsd:dateTime.</code></pre>
+<pre class="ttl"><code>  cb:uuid       &#39;(uuid)&#39;;
+  cb:name       &#39;(name)&#39;;
+  cb:permalink  &#39;(permalink)&#39;;
+  cb:url        &#39;(cb_url)&#39;^^xsd:anyURI;
+  cb:rank       &#39;(rank)&#39;^^xsd:integer;
+  cb:createdAt  &#39;fixDate(created_at)&#39;^^xsd:dateTime;
+  cb:updatedAt  &#39;fixDate(updated_at)&#39;^^xsd:dateTime.</code></pre>
 <p>Truth be told, these are not very semantic:</p>
 <ul>
 <li>They include CB data about an event (<code>name, permalink, url, rank</code>) that is not properly attributed to CB;
@@ -681,7 +682,7 @@ Furthermore, we'd have to repeat the same event nodes for both <code>Offering</c
 <p><img src="ipos-financials.png" /></p>
 <p>Of the 3 factors, Market Capitalization is represented using a more complex pattern:</p>
 <ul>
-<li>The <code>&lt;.../marketCap/...&gt;</code> node being <code>MarketCapitalization</code>, which is based on the <code>pricePerShare</code> has has value <code>&lt;.../marketCapValue/...&gt;</code></li>
+<li>The <code>&lt;.../marketCap/...&gt;</code> node being <code>MarketCapitalization</code>, which is based on the <code>pricePerShare</code> and has value <code>&lt;.../marketCapValue/...&gt;</code></li>
 <li>The <code>&lt;.../marketCapValue/...&gt;</code> node being <code>MonetaryAmount</code></li>
 </ul>
 <p>Please note the URL patterns used by the financial nodes in "national currency" vs in "USD":</p>
@@ -707,18 +708,18 @@ And for IPOs that use the same currency for their 3 financials, only 1 pair of n
 <p>FIBO distinguishes betwen currencies and their codes in a particular code set (in this case "CrunchBase currency code set").
 But CB uses ISO 4217 standard currency codes, and FIBO already includes such data in the ontology <code>FND/Accounting/ISO4217-CurrencyCodes.rdf</code>, e.g.:</p>
 <pre class="ttl"><code>fibo-fnd-acc-4217:USD
-  rdf:type           fibo-fnd-acc-cur:CurrencyIdentifier , owl:NamedIndividual ;
-  fibo-fnd-rel-rel:hasTag      &quot;USD&quot; ;
-  rdfs:label         &quot;USD&quot; ;
-  cmns-dsg:denotes     fibo-fnd-acc-4217:USDollar ;
-  cmns-id:identifies  fibo-fnd-acc-4217:USDollar ;
+  rdf:type                fibo-fnd-acc-cur:CurrencyIdentifier , owl:NamedIndividual ;
+  fibo-fnd-rel-rel:hasTag &quot;USD&quot; ;
+  rdfs:label              &quot;USD&quot; ;
+  cmns-dsg:denotes        fibo-fnd-acc-4217:USDollar ;
+  cmns-id:identifies      fibo-fnd-acc-4217:USDollar ;
 
 fibo-fnd-acc-4217:USDollar
-  rdf:type                       fibo-fnd-acc-cur:Currency , owl:NamedIndividual ;
-  cmns-dsg:hasName                 &quot;US Dollar&quot; .
-  rdfs:label                     &quot;US Dollar&quot; ;
+  rdf:type                        fibo-fnd-acc-cur:Currency , owl:NamedIndividual ;
+  cmns-dsg:hasName                &quot;US Dollar&quot; .
+  rdfs:label                      &quot;US Dollar&quot; ;
   fibo-fnd-acc-cur:hasNumericCode &quot;840&quot; ;
-  cmns-cxtdsg:isUsedBy                lcc-3166-1:VirginIslandsBritish ...</code></pre>
+  cmns-cxtdsg:isUsedBy            lcc-3166-1:VirginIslandsBritish ...</code></pre>
 <p>So why didn't I reuse the FIBO currency nodes and instead made CB currency nodes?
 The reason is subtle and is described in <a href="https://github.com/edmcouncil/fibo/issues/1816">fibo/issues/1816</a>:</p>
 <ul>
@@ -751,18 +752,18 @@ so now external data like CB can safely refer to <strong>currency</strong> nodes
 <li>It has 25 nodes, of which 11 are shared with other IPOs (the currencies and currency codes) and 14 are per-IPO</li>
 <li>It has 136 triples; compare to the simplest model that uses 1 node and 22 triples
 </li>
-<li>It uses terms from 13 FIBO ontologies and 8 ontologies from the Object Management Group (OMG)'s Commons Ontology Library (see <a href="prefixes.ttl">prefixes.ttl</a>).</li>
+<li>It uses terms from many ontologies: 13 from FIBO and 8 from the Object Management Group (OMG)'s Commons Ontology Library (see <a href="prefixes.ttl">prefixes.ttl</a>).</li>
 </ul>
-<pre class="ttl"><code>@prefix cb:   &lt;https://ontotext.com/crunchbase/ontology/&gt; .
+<pre class="ttl"><code>@prefix cb:                &lt;https://ontotext.com/crunchbase/ontology/&gt; .
 
-@prefix cmns-cds: &lt;https://www.omg.org/spec/Commons/CodesAndCodeSets/&gt; .
-@prefix cmns-col: &lt;https://www.omg.org/spec/Commons/Collections/&gt; .
-@prefix cmns-dsg: &lt;https://www.omg.org/spec/Commons/Designators/&gt; .
-@prefix cmns-dt: &lt;https://www.omg.org/spec/Commons/DatesAndTimes/&gt; .
-@prefix cmns-cxtdsg: &lt;https://www.omg.org/spec/Commons/ContextualDesignators/&gt; .
-@prefix cmns-id: &lt;https://www.omg.org/spec/Commons/Identifiers/&gt; .
-@prefix cmns-qtu: &lt;https://www.omg.org/spec/Commons/QuantitiesAndUnits/&gt; .
-@prefix cmns-rlcmp: &lt;https://www.omg.org/spec/Commons/RolesAndCompositions/&gt; .
+@prefix cmns-cds:          &lt;https://www.omg.org/spec/Commons/CodesAndCodeSets/&gt; .
+@prefix cmns-col:          &lt;https://www.omg.org/spec/Commons/Collections/&gt; .
+@prefix cmns-cxtdsg:       &lt;https://www.omg.org/spec/Commons/ContextualDesignators/&gt; .
+@prefix cmns-dsg:          &lt;https://www.omg.org/spec/Commons/Designators/&gt; .
+@prefix cmns-dt:           &lt;https://www.omg.org/spec/Commons/DatesAndTimes/&gt; .
+@prefix cmns-id:           &lt;https://www.omg.org/spec/Commons/Identifiers/&gt; .
+@prefix cmns-qtu:          &lt;https://www.omg.org/spec/Commons/QuantitiesAndUnits/&gt; .
+@prefix cmns-rlcmp:        &lt;https://www.omg.org/spec/Commons/RolesAndCompositions/&gt; .
 @prefix fibo-fbc-fct-mkt:  &lt;https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/&gt; .
 @prefix fibo-fbc-fct-ra:   &lt;https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/&gt; .
 @prefix fibo-fbc-fi-fi:    &lt;https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/&gt; .
@@ -783,40 +784,67 @@ so now external data like CB can safely refer to <strong>currency</strong> nodes
 <li>FIBO represents the stock exchange and its code as two separate nodes</li>
 <li>Finally, FIBO represents currencies and their codes as two separate nodes</li>
 </ul>
+<h2 data-number="4.6" id="fibo-changes"><span class="header-section-number">4.6</span> FIBO Changes</h2>
 <p>I have validated this representation with the EDM Council (see <a href="https://github.com/edmcouncil/fibo/issues/1808">fibo/issues/1808</a>):
-performed 3 iterations and made all suggested additions/corrections.</p>
-<h2 data-number="4.6" id="how-i-made-the-overall-model"><span class="header-section-number">4.6</span> How I Made the Overall Model?</h2>
+performed 3 iterations and implemented all suggested additions/corrections.</p>
+<p>The initial version of this paper (5-Sep-2023) used FIBO 2022Q2.
+But there were numerous changes to FIBO since then. This includes:</p>
+<ul>
+<li>Integration of a number of patterns that are now part of the OMG's <a href="https://www.omg.org/spec/Commons/1.1/Beta1/About-Commons">Commons Ontology Library Specification</a> v1.1 beta, many of which were derived from FIBO and improved on.</li>
+<li>Additional contentw as added to FIBO in securities and derivatives that was not available when this example was initially created.</li>
+</ul>
+<p>Elisa Kendall graciously updated the example to use the new ontology terms.
+For the curious, a <a href="https://github.com/VladimirAlexiev/crunchbase-fibo/pull/1/files?diff=split&amp;w=0">detailed diff can be seen on Github</a>.
+The following namespaces were changed:</p>
+<ul>
+<li>ADDED</li>
+</ul>
+<pre class="ttl"><code>@prefix cmns-cds:         &lt;https://www.omg.org/spec/Commons/CodesAndCodeSets/&gt; .
+@prefix cmns-col:         &lt;https://www.omg.org/spec/Commons/Collections/&gt; .
+@prefix cmns-dsg:         &lt;https://www.omg.org/spec/Commons/Designators/&gt; .
+@prefix cmns-dt:          &lt;https://www.omg.org/spec/Commons/DatesAndTimes/&gt; .
+@prefix cmns-cxtdsg:      &lt;https://www.omg.org/spec/Commons/ContextualDesignators/&gt; .
+@prefix cmns-id:          &lt;https://www.omg.org/spec/Commons/Identifiers/&gt; .
+@prefix cmns-qtu:         &lt;https://www.omg.org/spec/Commons/QuantitiesAndUnits/&gt; .
+@prefix cmns-rlcmp:       &lt;https://www.omg.org/spec/Commons/RolesAndCompositions/&gt; .</code></pre>
+<ul>
+<li>DELETED</li>
+</ul>
+<pre class="ttl"><code>@prefix fibo-fnd-utl-alx: &lt;https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/Analytics/&gt; .
+@prefix fibo-fnd-dt-fd:   &lt;https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/&gt; .
+@prefix lcc-lr:           &lt;https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/&gt; .</code></pre>
+<h2 data-number="4.7" id="how-i-made-the-overall-model"><span class="header-section-number">4.7</span> How I Made the Overall Model?</h2>
 <p>I made the overall model by simply concatenating the Turtle files of the individual models presented in earlier sections.
 Concatenating any Turtle files produces a valid turtle file, since <code>@prefix</code> and <code>@base</code> can occur anywhere in Turtle.
 (But don't abuse this feature by redefining prefixes mid-way!)</p>
 <p>If you have played with UML XMI files, the simplicity of composing semantic models by simply concatenating them should be refreshing.
 It mirrors the simplicity of semantic data integration by "simply" converting any kind of data to RDF, using consistent URLs, and "pouring" all data into a semantic repository.</p>
 <p>I have used some <code>rdfpuml</code> (PlantUML) layout instructions in the models to improve the look of the overall model.
-These specify the direction and length of a few arrows, and set colored circles for the classes (<code>stereotype</code>)</p>
-<pre class="ttl"><code>cmns-id:identifies   puml:arrow puml:up.
-cmns-rlcmp:isPlayedBy   puml:arrow puml:up.
-cmns-qtu:hasArgument   puml:arrow puml:up.
-fibo-fnd-acc-cur:isPriceFor    puml:arrow puml:up.
-fibo-fnd-rel-rel:isIssuedBy    puml:arrow puml:up.
-cmns-cxtdsg:appliesTo     puml:arrow puml:up.
-fibo-fbc-fi-fi:isDenominatedIn puml:arrow puml:down-4.
+These specify the direction and length of a few arrows, and set colored circles for the classes (called "UML stereotype").</p>
+<pre class="ttl"><code>cmns-cxtdsg:appliesTo                  puml:arrow puml:up.
+cmns-id:identifies                     puml:arrow puml:up.
+cmns-qtu:hasArgument                   puml:arrow puml:up.
+cmns-rlcmp:isPlayedBy                  puml:arrow puml:up.
+fibo-fbc-fi-fi:isDenominatedIn         puml:arrow puml:down-4.
+fibo-fnd-acc-cur:isPriceFor            puml:arrow puml:up.
+fibo-fnd-rel-rel:isIssuedBy            puml:arrow puml:up.
 
-fibo-fbc-fct-mkt:Exchange             puml:stereotype &quot;(X,lightblue)&quot;.  # also fibo-fbc-fct-ra:RegistrationAuthority
-fibo-fbc-fi-fi:Issuer                 puml:stereotype &quot;(I,lightblue)&quot;.  # also fibo-fbc-pas-fpas:Offeror
-fibo-fnd-acc-cur:Currency             puml:stereotype &quot;(C,green)&quot;.
-fibo-fnd-acc-cur:CurrencyIdentifier   puml:stereotype &quot;(I,green)&quot;.
-fibo-fnd-acc-cur:MonetaryAmount       puml:stereotype &quot;(A,red)&quot;.
-fibo-fnd-acc-cur:MonetaryPrice        puml:stereotype &quot;(P,red)&quot;.
-fibo-ind-mkt-bas:MarketCapitalization puml:stereotype &quot;(C,red)&quot;.
-fibo-sec-eq-eq:PricePerShare          puml:stereotype &quot;(P,red)&quot;.
-fibo-sec-sec-id:TickerSymbol          puml:stereotype &quot;(T,lightgreen)&quot;.
-fibo-sec-sec-iss:PublicOffering       puml:stereotype &quot;(O,yellow)&quot;.
-fibo-sec-sec-lst:ListedSecurity       puml:stereotype &quot;(S,yellow)&quot;.     # also fibo-sec-eq-eq:Share
-fibo-sec-sec-lst:Listing              puml:stereotype &quot;(L,yellow)&quot;.
-cmns-cds:CodeSet                      puml:stereotype &quot;(C,lightgreen)&quot;.
-cmns-id:IdentificationScheme          puml:stereotype &quot;(S,lightgreen)&quot;. # also cmns-cds:CodeSet
-cmns-id:Identifier                    puml:stereotype &quot;(I,lightgreen)&quot;.</code></pre>
-<h2 data-number="4.7" id="generating-semantic-transformation"><span class="header-section-number">4.7</span> Generating Semantic Transformation</h2>
+cmns-cds:CodeSet                       puml:stereotype &quot;(C,lightgreen)&quot;.
+cmns-id:IdentificationScheme           puml:stereotype &quot;(S,lightgreen)&quot;. # also cmns-cds:CodeSet
+cmns-id:Identifier                     puml:stereotype &quot;(I,lightgreen)&quot;.
+fibo-fbc-fct-mkt:Exchange              puml:stereotype &quot;(X,lightblue)&quot;.  # also fibo-fbc-fct-ra:RegistrationAuthority
+fibo-fbc-fi-fi:Issuer                  puml:stereotype &quot;(I,lightblue)&quot;.  # also fibo-fbc-pas-fpas:Offeror
+fibo-fnd-acc-cur:Currency              puml:stereotype &quot;(C,green)&quot;.
+fibo-fnd-acc-cur:CurrencyIdentifier    puml:stereotype &quot;(I,green)&quot;.
+fibo-fnd-acc-cur:MonetaryAmount        puml:stereotype &quot;(A,red)&quot;.
+fibo-fnd-acc-cur:MonetaryPrice         puml:stereotype &quot;(P,red)&quot;.
+fibo-ind-mkt-bas:MarketCapitalization  puml:stereotype &quot;(C,red)&quot;.
+fibo-sec-eq-eq:PricePerShare           puml:stereotype &quot;(P,red)&quot;.
+fibo-sec-sec-id:TickerSymbol           puml:stereotype &quot;(T,lightgreen)&quot;.
+fibo-sec-sec-iss:PublicOffering        puml:stereotype &quot;(O,yellow)&quot;.
+fibo-sec-sec-lst:ListedSecurity        puml:stereotype &quot;(S,yellow)&quot;.     # also fibo-sec-eq-eq:Share
+fibo-sec-sec-lst:Listing               puml:stereotype &quot;(L,yellow)&quot;.</code></pre>
+<h2 data-number="4.8" id="generating-semantic-transformation"><span class="header-section-number">4.8</span> Generating Semantic Transformation</h2>
 <p>Although the FIBO IPO model is considerably more complex than the CB IPO model,
 we can use the <code>rdf2sparql</code> script (part of the <a href="https://github.com/VladimirAlexiev/rdf2rml">RDF by Example</a> open source project)
 to generate a semantic transformation automatically <span class="citation" data-cites="Alexiev-ENDORSE-2023">[<a href="#ref-Alexiev-ENDORSE-2023" role="doc-biblioref">1</a>]</span>.</p>
@@ -824,15 +852,27 @@ to generate a semantic transformation automatically <span class="citation" data-
 generated from the FIBO IPO model that has the following parts:</p>
 <ul>
 <li>22 prefixes, collected manually from the various model parts</li>
-<li><code>delete graph</code> part that empties the target named graph,
-which comes from a comment in the first model file:</li>
+<li><code>delete graph</code> that empties the named graph for the row,
+specified with a comment in the first model file: <code># GRAPH &lt;cb/ipos/(uuid)&gt;</code>:</li>
 </ul>
-<pre><code># GRAPH &lt;cb/ipos/(uuid)&gt;</code></pre>
+<pre class="sparql"><code>delete {graph ?cb_ipos_uuid_URL {?_s_ ?_p_ ?_o_}}
+where {
+  service &lt;rdf-mapper:ontorefine:PROJECT_ID&gt; {
+    bind(?c_uuid as ?uuid)
+    bind(iri(concat(&quot;cb/ipos/&quot;,?uuid)) as ?cb_ipos_uuid_URL)
+    bind(?c_updated_at as ?updated_at)
+  }
+  &lt;cb&gt; cb:updatedAt ?UPDATED_AT_DT 
+  bind(replace(str(?UPDATED_AT_DT),&#39;T&#39;,&#39; &#39;) as ?UPDATED_AT) filter(?updated_at &gt; ?UPDATED_AT)
+  graph ?cb_ipos_uuid_URL {?_s_ ?_p_ ?_o_}};</code></pre>
+<p>CrunchBase has about 18 tables and each row has <code>uuid</code> and <code>updated_at</code> timestamp.
+This allows us to process the whole dump <strong>and</strong> daily updates using the same generated set of scripts,
+by storing each row of each table in a separate named graph (about 14M graps).
+We clear only graphs that have been updated since the last ingest.
+The <code>service &lt;rdf-mapper:ontorefine:PROJECT_ID&gt;</code> pattern is executed against an OntoRefine virtual SPARQL endpoint,
+whereas <code>cb:updatedAt</code> fetches a global timestamp recorded in the real RDF repository.
+See <a href="https://github.com/VladimirAlexiev/rdf2rml/blob/master/doc/rdf2sparql.md#global-filtering">rdf2sparql: Global Filtering</a> for details.</p>
 <ul>
-<li>We use one graph per source record (CSV row),
-and we clear only graphs that have been updated since the last ingest.
-We used a similar technique to implement daily updates of CB data based on <code>updatedAt</code> timestamps:
-see <a href="https://github.com/VladimirAlexiev/rdf2rml/blob/master/doc/rdf2sparql.md#global-filtering">rdf2sparql: Global Filtering</a> and the <code>Makefile</code> for details</li>
 <li>144 lines in the <code>insert graph</code> part that come from the IPO model</li>
 <li>57 <code>bind</code> to compute values from source CSV fields.</li>
 </ul>
@@ -849,6 +889,26 @@ see <a href="https://github.com/VladimirAlexiev/rdf2rml/blob/master/doc/rdf2spar
 <li>Compute URLs, eg</li>
 </ul>
 <pre class="sparql"><code>bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/pricePerShare/USD&quot;)) as ?cb_ipo_uuid_pricePerShare_USD_URL)</code></pre>
+<p>Here are some of the binds.
+Hopefully you can appreciate how a simple declarative model
+is used to generate a complex (even cryptic) transformation:</p>
+<pre class="sparql"><code>    bind(REPLACE(?created_at,&#39; &#39;,&#39;T&#39;) as ?created_at_FIXDATE)
+    bind(strdt(?created_at_FIXDATE,xsd:dateTime) as ?created_at_FIXDATE_xsd_dateTime)
+    bind(REPLACE(?updated_at,&#39; &#39;,&#39;T&#39;) as ?updated_at_FIXDATE)
+    bind(strdt(?updated_at_FIXDATE,xsd:dateTime) as ?updated_at_FIXDATE_xsd_dateTime)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/listing&quot;)) as ?cb_ipo_uuid_listing_URL)
+    bind(iri(concat(&quot;cb/currency/&quot;,?share_price_currency_code)) as ?cb_currency_share_price_currency_code_URL)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/ticker&quot;)) as ?cb_ipo_uuid_ticker_URL)
+    bind(iri(concat(&quot;cb/currency/&quot;,?valuation_price_currency_code)) as ?cb_currency_valuation_price_currency_code_URL)
+    bind(iri(concat(&quot;cb/currency/&quot;,?money_raised_currency_code)) as ?cb_currency_money_raised_currency_code_URL)
+    bind(strdt(?money_raised,xsd:decimal) as ?money_raised_xsd_decimal)
+    bind(strdt(?money_raised_usd,xsd:decimal) as ?money_raised_usd_xsd_decimal)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/marketCap/&quot;,?valuation_price_currency_code)) as ?cb_ipo_uuid_marketCap_valuation_price_currency_code_URL)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/marketCapValue/&quot;,?valuation_price_currency_code)) as ?cb_ipo_uuid_marketCapValue_valuation_price_currency_code_URL)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/pricePerShare/&quot;,?share_price_currency_code)) as ?cb_ipo_uuid_pricePerShare_share_price_currency_code_URL)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/marketCap/USD&quot;)) as ?cb_ipo_uuid_marketCap_USD_URL)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/marketCapValue/USD&quot;)) as ?cb_ipo_uuid_marketCapValue_USD_URL)
+    bind(iri(concat(&quot;cb/ipo/&quot;,?uuid,&quot;/pricePerShare/USD&quot;)) as ?cb_ipo_uuid_pricePerShare_USD_URL)</code></pre>
 <h1 data-number="5" id="conclusion"><span class="header-section-number">5</span> Conclusion</h1>
 <p>FIBO is good for capturing real-world complexity and integrating data from numerous sources, e.g.</p>
 <ul>
@@ -874,8 +934,8 @@ or the exchange listing being purchased by another company</li>
 <li>Complexity of competence questions</li>
 <li>Ability of data consumers (query writers) to navigate the complex graph efficiently</li>
 <li>Possibility to introduce some query abstractions or "facades" to simplify querying.
-As such examples I can point out to GraphQL (e.g. as implemented over RDF by <a href="https://platform.ontotext.com/semantic-objects/">Ontotext Semantic Objects</a>
-and CIDOC CRM Fundamental Relations search <span class="citation" data-cites="Alexiev2012-CRM-search Alexiev2013-CRM-reasoning">[<a href="#ref-Alexiev2012-CRM-search" role="doc-biblioref">2</a>, <a href="#ref-Alexiev2013-CRM-reasoning" role="doc-biblioref">4</a>]</span>.</li>
+As such examples I can point out to GraphQL (e.g. as implemented over RDF by <a href="https://platform.ontotext.com/semantic-objects/">Ontotext Semantic Objects</a>)
+and to CIDOC CRM Fundamental Relations search <span class="citation" data-cites="Alexiev2012-CRM-search Alexiev2013-CRM-reasoning">[<a href="#ref-Alexiev2012-CRM-search" role="doc-biblioref">2</a>, <a href="#ref-Alexiev2013-CRM-reasoning" role="doc-biblioref">4</a>]</span>.</li>
 </ul></li>
 </ul>
 <p>Such calls rest ultimately with the Semantic Data Architect, who should evaluate the tradeoffs of different representations.</p>
@@ -886,9 +946,12 @@ and CIDOC CRM Fundamental Relations search <span class="citation" data-cites="Al
 <li>And as Americans say, "Your Mileage May Vary".</li>
 </ul>
 <h2 data-number="5.1" id="acknowledgements"><span class="header-section-number">5.1</span> Acknowledgements</h2>
-<p>I am grateful to Elisa Kendall and Pawel Garbacz for their feedback on my IPO representation in FIBO.</p>
+<ul>
+<li>I am grateful to Elisa Kendall and Pawel Garbacz for their feedback on my IPO representation in FIBO.</li>
+<li>I am especially grateful to Elisa Kendall or updating the example to FIBO version 2024Q1.</li>
+</ul>
 <h2 data-number="5.2" id="references"><span class="header-section-number">5.2</span> References</h2>
-<div id="refs" class="references csl-bib-body" role="list">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
 <div id="ref-Alexiev-ENDORSE-2023" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">Alexiev, V. 2023. <a href="https://drive.google.com/open?id=1Cq5o9th_P812paqGkDsaEomJyAmnypkD"><span class="nocase">Generation of Declarative Transformations from Semantic Models</span></a>. <em><span class="nocase">European Data Conference on Reference Data and Semantics (ENDORSE 2023)</span></em> (Mar. 2023).</div>
 </div>

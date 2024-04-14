@@ -1,57 +1,56 @@
-@base         <https://ontotext.com/crunchbase/resource/> .
-@prefix CB:   <https://ontotext.com/crunchbase/resource/> .
-@prefix cb:   <https://ontotext.com/crunchbase/ontology/> .
+@base                      <https://ontotext.com/crunchbase/resource/> .
+@prefix CB:                <https://ontotext.com/crunchbase/resource/> .
+@prefix cb:                <https://ontotext.com/crunchbase/ontology/> .
 
-@prefix cmns-cds: <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
-@prefix cmns-col: <https://www.omg.org/spec/Commons/Collections/> .
-@prefix cmns-dsg: <https://www.omg.org/spec/Commons/Designators/> .
-@prefix cmns-dt: <https://www.omg.org/spec/Commons/DatesAndTimes/> .
-@prefix cmns-cxtdsg: <https://www.omg.org/spec/Commons/ContextualDesignators/> .
-@prefix cmns-id: <https://www.omg.org/spec/Commons/Identifiers/> .
-@prefix cmns-qtu: <https://www.omg.org/spec/Commons/QuantitiesAndUnits/> .
-@prefix cmns-rlcmp: <https://www.omg.org/spec/Commons/RolesAndCompositions/> .
-@prefix fibo-fbc-fct-mkt: <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/> .
-@prefix fibo-fbc-fct-ra:  <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/> .
-@prefix fibo-fbc-fi-fi:   <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/> .
+@prefix cmns-cds:          <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:          <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-cxtdsg:       <https://www.omg.org/spec/Commons/ContextualDesignators/> .
+@prefix cmns-dsg:          <https://www.omg.org/spec/Commons/Designators/> .
+@prefix cmns-dt:           <https://www.omg.org/spec/Commons/DatesAndTimes/> .
+@prefix cmns-id:           <https://www.omg.org/spec/Commons/Identifiers/> .
+@prefix cmns-qtu:          <https://www.omg.org/spec/Commons/QuantitiesAndUnits/> .
+@prefix cmns-rlcmp:        <https://www.omg.org/spec/Commons/RolesAndCompositions/> .
+@prefix fibo-fbc-fct-mkt:  <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/> .
+@prefix fibo-fbc-fct-ra:   <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/> .
+@prefix fibo-fbc-fi-fi:    <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/> .
 @prefix fibo-fbc-pas-fpas: <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
-@prefix fibo-fnd-acc-cur: <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/> .
-@prefix fibo-fnd-agr-ctr: <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/> .
-@prefix fibo-fnd-arr-id:  <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/> .
-@prefix fibo-fnd-rel-rel: <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
-@prefix fibo-ind-mkt-bas: <https://spec.edmcouncil.org/fibo/ontology/IND/MarketIndices/BasketIndices/> .
-@prefix fibo-sec-eq-eq:   <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/> .
-@prefix fibo-sec-sec-id:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/> .
+@prefix fibo-fnd-acc-cur:  <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/> .
+@prefix fibo-fnd-agr-ctr:  <https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/> .
+@prefix fibo-fnd-arr-id:   <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/> .
+@prefix fibo-fnd-rel-rel:  <https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/> .
+@prefix fibo-ind-mkt-bas:  <https://spec.edmcouncil.org/fibo/ontology/IND/MarketIndices/BasketIndices/> .
+@prefix fibo-sec-eq-eq:    <https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/> .
+@prefix fibo-sec-sec-id:   <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/> .
 @prefix fibo-sec-sec-iss:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/> .
-@prefix fibo-sec-sec-lst: <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/> .
+@prefix fibo-sec-sec-lst:  <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/> .
 
-@prefix puml:   <http://plantuml.com/ontology#> .
-@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
-@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix puml:              <http://plantuml.com/ontology#> .
+@prefix rdfs:              <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:              <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:               <http://www.w3.org/2001/XMLSchema#> .
 
 ############ PlantUML instructions
 
-cmns-cxtdsg:appliesTo          puml:arrow puml:up.
-cmns-id:identifies             puml:arrow puml:up.
-cmns-qtu:hasArgument           puml:arrow puml:up.
-cmns-rlcmp:isPlayedBy          puml:arrow puml:up.
-fibo-fnd-acc-cur:isPriceFor    puml:arrow puml:up.
-fibo-fnd-rel-rel:isIssuedBy    puml:arrow puml:up.
-fibo-fbc-fi-fi:isDenominatedIn puml:arrow puml:down-4.
+cmns-cxtdsg:appliesTo                  puml:arrow puml:up.
+cmns-id:identifies                     puml:arrow puml:up.
+cmns-qtu:hasArgument                   puml:arrow puml:up.
+cmns-rlcmp:isPlayedBy                  puml:arrow puml:up.
+fibo-fbc-fi-fi:isDenominatedIn         puml:arrow puml:down-4.
+fibo-fnd-acc-cur:isPriceFor            puml:arrow puml:up.
+fibo-fnd-rel-rel:isIssuedBy            puml:arrow puml:up.
 
-cmns-cds:CodeSet                      puml:stereotype "(C,lightgreen)".
-cmns-id:IdentificationScheme          puml:stereotype "(S,lightgreen)". # also cmns-cds:CodeSet
-cmns-id:Identifier                    puml:stereotype "(I,lightgreen)".
-fibo-fbc-fct-mkt:Exchange             puml:stereotype "(X,lightblue)".  # also fibo-fbc-fct-ra:RegistrationAuthority
-fibo-fbc-fi-fi:Issuer                 puml:stereotype "(I,lightblue)".  # also fibo-fbc-pas-fpas:Offeror
-fibo-fnd-acc-cur:Currency             puml:stereotype "(C,green)".
-fibo-fnd-acc-cur:CurrencyIdentifier   puml:stereotype "(I,green)".
-fibo-fnd-acc-cur:MonetaryAmount       puml:stereotype "(A,red)".
-fibo-fnd-acc-cur:MonetaryPrice        puml:stereotype "(P,red)".
-fibo-ind-mkt-bas:MarketCapitalization puml:stereotype "(C,red)".
-fibo-sec-eq-eq:PricePerShare          puml:stereotype "(P,red)".
-fibo-sec-sec-id:TickerSymbol          puml:stereotype "(T,lightgreen)".
-fibo-sec-sec-iss:PublicOffering       puml:stereotype "(O,yellow)".
-fibo-sec-sec-lst:ListedSecurity       puml:stereotype "(S,yellow)".     # also fibo-sec-eq-eq:Share
-fibo-sec-sec-lst:Listing              puml:stereotype "(L,yellow)".
-
+cmns-cds:CodeSet                       puml:stereotype "(C,lightgreen)".
+cmns-id:IdentificationScheme           puml:stereotype "(S,lightgreen)". # also cmns-cds:CodeSet
+cmns-id:Identifier                     puml:stereotype "(I,lightgreen)".
+fibo-fbc-fct-mkt:Exchange              puml:stereotype "(X,lightblue)".  # also fibo-fbc-fct-ra:RegistrationAuthority
+fibo-fbc-fi-fi:Issuer                  puml:stereotype "(I,lightblue)".  # also fibo-fbc-pas-fpas:Offeror
+fibo-fnd-acc-cur:Currency              puml:stereotype "(C,green)".
+fibo-fnd-acc-cur:CurrencyIdentifier    puml:stereotype "(I,green)".
+fibo-fnd-acc-cur:MonetaryAmount        puml:stereotype "(A,red)".
+fibo-fnd-acc-cur:MonetaryPrice         puml:stereotype "(P,red)".
+fibo-ind-mkt-bas:MarketCapitalization  puml:stereotype "(C,red)".
+fibo-sec-eq-eq:PricePerShare           puml:stereotype "(P,red)".
+fibo-sec-sec-id:TickerSymbol           puml:stereotype "(T,lightgreen)".
+fibo-sec-sec-iss:PublicOffering        puml:stereotype "(O,yellow)".
+fibo-sec-sec-lst:ListedSecurity        puml:stereotype "(S,yellow)".     # also fibo-sec-eq-eq:Share
+fibo-sec-sec-lst:Listing               puml:stereotype "(L,yellow)".
