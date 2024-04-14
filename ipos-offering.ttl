@@ -3,7 +3,7 @@
 <cb/ipo/(uuid)/offering> a fibo-sec-sec-iss:PublicOffering;
   rdfs:label "IPO (permalink)";
   fibo-fbc-pas-fpas:hasOfferingPrice <cb/ipo/(uuid)/price/(money_raised_currency_code)>, <cb/ipo/(uuid)/price/USD>;
-  fibo-fnd-rel-rel:appliesTo <cb/ipo/(uuid)/share>;
+  cmns-cxtdsg:appliesTo <cb/ipo/(uuid)/share>;
   fibo-fnd-rel-rel:isIssuedBy <cb/agent/(org_uuid)/issuer>;
   fibo-sec-sec-iss:hasFirstTradeDate '(went_public_on)'^^xsd:date;
   fibo-sec-sec-iss:isRegisteredWith <cb/exchange/(stock_exchange_symbol)>;
@@ -27,15 +27,15 @@
 <cb/ipo/(uuid)/listing> a fibo-sec-sec-lst:Listing;
   rdfs:label "Listing of share/security '(stock_symbol)' on exchange '(stock_exchange_symbol)'";
   fibo-sec-sec-lst:lists <cb/ipo/(uuid)/share>;
-  lcc-lr:isIdentifiedBy <cb/ipo/(uuid)/ticker>;
+  cmns-id:isIdentifiedBy <cb/ipo/(uuid)/ticker>;
   fibo-sec-sec-lst:isTradedOn <cb/exchange/(stock_exchange_symbol)>;
   fibo-fnd-acc-cur:hasCurrency <cb/currency/(share_price_currency_code)>.
 
 <cb/ipo/(uuid)/ticker> a fibo-sec-sec-id:TickerSymbol, fibo-sec-sec-id:ListedSecurityIdentifier;
   rdfs:label "Ticker symbol/security identifier '(stock_exchange_symbol):(stock_symbol)'";
-  lcc-lr:hasTag '(stock_symbol)';
+  fibo-fnd-rel-rel:hasTag '(stock_symbol)';
   fibo-fbc-fct-ra:isRegisteredBy <cb/exchange/(stock_exchange_symbol)>;
-  lcc-lr:identifies <cb/ipo/(uuid)/listing>;
+  cmns-id:identifies <cb/ipo/(uuid)/listing>;
   fibo-fnd-arr-id:hasInitialAssignmentDate '(went_public_on)'^^xsd:date.
 
 <cb/currency/USD> a fibo-fnd-acc-cur:Currency.

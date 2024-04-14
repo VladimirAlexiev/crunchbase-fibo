@@ -1,46 +1,46 @@
 ## Currencies: USD plus 3 more for the 3 financials
 
 <cb/currency/USD> a fibo-fnd-acc-cur:Currency;
-  lcc-lr:hasName 'USD';
+  cmns-dsg:hasName 'USD';
   rdfs:label 'Currency USD'.
 <cb/currency/USD/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
   rdfs:label 'Code of currency USD';
-  lcc-lr:hasTag 'USD';
-  lcc-lr:denotes <cb/currency/USD>;
-  lcc-lr:identifies <cb/currency/USD>;
-  lcc-lr:isMemberOf <cb/currency>.
+  fibo-fnd-rel-rel:hasTag 'USD';
+  cmns-dsg:denotes <cb/currency/USD>;
+  cmns-id:identifies <cb/currency/USD>;
+  cmns-col:isMemberOf <cb/currency>.
 
 <cb/currency/(share_price_currency_code)> a fibo-fnd-acc-cur:Currency;
-  lcc-lr:hasName '(share_price_currency_code)';
+  cmns-dsg:hasName '(share_price_currency_code)';
   rdfs:label 'Currency (share_price_currency_code)'.
 <cb/currency/(share_price_currency_code)/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
   rdfs:label 'Code of currency (share_price_currency_code)';
-  lcc-lr:hasTag '(share_price_currency_code)';
-  lcc-lr:denotes <cb/currency/(share_price_currency_code)>;
-  lcc-lr:identifies <cb/currency/(share_price_currency_code)>;
-  lcc-lr:isMemberOf <cb/currency>.
+  fibo-fnd-rel-rel:hasTag '(share_price_currency_code)';
+  cmns-dsg:denotes <cb/currency/(share_price_currency_code)>;
+  cmns-id:identifies <cb/currency/(share_price_currency_code)>;
+  cmns-col:isMemberOf <cb/currency>.
 
 <cb/currency/(valuation_price_currency_code)> a fibo-fnd-acc-cur:Currency;
-  lcc-lr:hasName '(valuation_price_currency_code)';
+  cmns-dsg:hasName '(valuation_price_currency_code)';
   rdfs:label 'Currency (valuation_price_currency_code)'.
 <cb/currency/(valuation_price_currency_code)/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
   rdfs:label 'Code of currency (valuation_price_currency_code)';
-  lcc-lr:hasTag '(valuation_price_currency_code)';
-  lcc-lr:denotes <cb/currency/(valuation_price_currency_code)>;
-  lcc-lr:identifies <cb/currency/(valuation_price_currency_code)>;
-  lcc-lr:isMemberOf <cb/currency>.
+  fibo-fnd-rel-rel:hasTag '(valuation_price_currency_code)';
+  cmns-dsg:denotes <cb/currency/(valuation_price_currency_code)>;
+  cmns-id:identifies <cb/currency/(valuation_price_currency_code)>;
+  cmns-col:isMemberOf <cb/currency>.
 
 <cb/currency/(money_raised_currency_code)> a fibo-fnd-acc-cur:Currency;
-  lcc-lr:hasName '(money_raised_currency_code)';
+  cmns-dsg:hasName '(money_raised_currency_code)';
   rdfs:label 'Currency (money_raised_currency_code)'.
 <cb/currency/(money_raised_currency_code)/code> a fibo-fnd-acc-cur:CurrencyIdentifier;
   rdfs:label 'Code of currency (money_raised_currency_code)';
-  lcc-lr:hasTag '(money_raised_currency_code)';
-  lcc-lr:denotes <cb/currency/(money_raised_currency_code)>;
-  lcc-lr:identifies <cb/currency/(money_raised_currency_code)>;
-  lcc-lr:isMemberOf <cb/currency>.
+  fibo-fnd-rel-rel:hasTag '(money_raised_currency_code)';
+  cmns-dsg:denotes <cb/currency/(money_raised_currency_code)>;
+  cmns-id:identifies <cb/currency/(money_raised_currency_code)>;
+  cmns-col:isMemberOf <cb/currency>.
 
-<cb/currency> a lcc-lr:IdentificationScheme, lcc-lr:CodeSet;
+<cb/currency> a cmns-id:IdentificationScheme, cmns-cds:CodeSet;
   rdfs:label 'CrunchBase currency code set';
   skos:definition 'Currency identifiers used in CrunchBase';
   skos:scopeNote 'Better reconcile to fibo-fnd-acc-4217:ISO4217-CodeSet'.

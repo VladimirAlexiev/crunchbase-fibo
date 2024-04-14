@@ -4,20 +4,20 @@
 
 <cb/agent/(org_uuid)/issuer> a fibo-fbc-fi-fi:Issuer, fibo-fbc-pas-fpas:Offeror;
   fibo-fnd-rel-rel:issues <cb/ipo/(uuid)/share>;
-  fibo-fnd-rel-rel:hasIdentity <cb/agent/(org_uuid)>.
+  cmns-rlcmp:isPlayedBy <cb/agent/(org_uuid)>.
 
 <cb/exchange/(stock_exchange_symbol)> a fibo-fbc-fct-mkt:Exchange, fibo-fbc-fct-ra:RegistrationAuthority;
   rdfs:label "Exchange '(stock_exchange_symbol)'";
-  fibo-fbc-fct-mkt:hasExchangeAcronym '(stock_exchange_symbol)';
-  lcc-lr:isIdentifiedBy <cb/exchange/(stock_exchange_symbol)/code>.
+  fibo-fbc-fct-mkt:hasFacilityAcronym '(stock_exchange_symbol)';
+  cmns-id:isIdentifiedBy <cb/exchange/(stock_exchange_symbol)/code>.
 
-<cb/exchange/(stock_exchange_symbol)/code> a lcc-lr:Identifier;
+<cb/exchange/(stock_exchange_symbol)/code> a cmns-id:Identifier;
   rdfs:label "Identifier of exchange '(stock_exchange_symbol)'";
-  lcc-lr:hasTag      '(stock_exchange_symbol)';
-  lcc-lr:identifies  <cb/exchange/(stock_exchange_symbol)>;
-  lcc-lr:isMemberOf  <cb/exchange/code>.
+  fibo-fnd-rel-rel:hasTag '(stock_exchange_symbol)';
+  cmns-id:identifies  <cb/exchange/(stock_exchange_symbol)>;
+  cmns-col:isMemberOf  <cb/exchange/code>.
 
-<cb/exchange/code> a lcc-lr:CodeSet;
+<cb/exchange/code> a cmns-cds:CodeSet;
   rdfs:label 'CrunchBase exchange code scheme'.
 
 <cb/ipo/(uuid)/share> a fibo-sec-sec-lst:ListedSecurity, fibo-sec-eq-eq:Share.
