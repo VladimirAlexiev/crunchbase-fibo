@@ -755,6 +755,14 @@ so now external data like CB can safely refer to <strong>currency</strong> nodes
 </ul>
 <pre class="ttl"><code>@prefix cb:   &lt;https://ontotext.com/crunchbase/ontology/&gt; .
 
+@prefix cmns-cds: &lt;https://www.omg.org/spec/Commons/CodesAndCodeSets/&gt; .
+@prefix cmns-col: &lt;https://www.omg.org/spec/Commons/Collections/&gt; .
+@prefix cmns-dsg: &lt;https://www.omg.org/spec/Commons/Designators/&gt; .
+@prefix cmns-dt: &lt;https://www.omg.org/spec/Commons/DatesAndTimes/&gt; .
+@prefix cmns-cxtdsg: &lt;https://www.omg.org/spec/Commons/ContextualDesignators/&gt; .
+@prefix cmns-id: &lt;https://www.omg.org/spec/Commons/Identifiers/&gt; .
+@prefix cmns-qtu: &lt;https://www.omg.org/spec/Commons/QuantitiesAndUnits/&gt; .
+@prefix cmns-rlcmp: &lt;https://www.omg.org/spec/Commons/RolesAndCompositions/&gt; .
 @prefix fibo-fbc-fct-mkt:  &lt;https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/Markets/&gt; .
 @prefix fibo-fbc-fct-ra:   &lt;https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/RegistrationAuthorities/&gt; .
 @prefix fibo-fbc-fi-fi:    &lt;https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/&gt; .
@@ -762,15 +770,12 @@ so now external data like CB can safely refer to <strong>currency</strong> nodes
 @prefix fibo-fnd-acc-cur:  &lt;https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/&gt; .
 @prefix fibo-fnd-agr-ctr:  &lt;https://spec.edmcouncil.org/fibo/ontology/FND/Agreements/Contracts/&gt; .
 @prefix fibo-fnd-arr-id:   &lt;https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/IdentifiersAndIndices/&gt; .
-@prefix fibo-fnd-dt-fd:    &lt;https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/&gt; .
 @prefix fibo-fnd-rel-rel:  &lt;https://spec.edmcouncil.org/fibo/ontology/FND/Relations/Relations/&gt; .
-@prefix fibo-fnd-utl-alx:  &lt;https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/Analytics/&gt; .
 @prefix fibo-ind-mkt-bas:  &lt;https://spec.edmcouncil.org/fibo/ontology/IND/MarketIndices/BasketIndices/&gt; .
 @prefix fibo-sec-eq-eq:    &lt;https://spec.edmcouncil.org/fibo/ontology/SEC/Equities/EquityInstruments/&gt; .
 @prefix fibo-sec-sec-id:   &lt;https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/&gt; .
 @prefix fibo-sec-sec-iss:  &lt;https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIssuance/&gt; .
-@prefix fibo-sec-sec-lst:  &lt;https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/&gt; .
-@prefix lcc-lr:            &lt;https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/&gt; .</code></pre>
+@prefix fibo-sec-sec-lst:  &lt;https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesListings/&gt; .</code></pre>
 <p>What is the reason for this complexity?</p>
 <ul>
 <li>FIBO distinguishes between Offering (the IPO), Share, Listing (of the share at an exchange), Ticker (a <code>ReassignableIdentifier</code>)</li>
@@ -788,7 +793,7 @@ Concatenating any Turtle files produces a valid turtle file, since <code>@prefix
 It mirrors the simplicity of semantic data integration by "simply" converting any kind of data to RDF, using consistent URLs, and "pouring" all data into a semantic repository.</p>
 <p>I have used some <code>rdfpuml</code> (PlantUML) layout instructions in the models to improve the look of the overall model.
 These specify the direction and length of a few arrows, and set colored circles for the classes (<code>stereotype</code>)</p>
-<pre class="ttl"><code>cmns-id:identifies              puml:arrow puml:up.
+<pre class="ttl"><code>cmns-id:identifies   puml:arrow puml:up.
 cmns-rlcmp:isPlayedBy   puml:arrow puml:up.
 cmns-qtu:hasArgument   puml:arrow puml:up.
 fibo-fnd-acc-cur:isPriceFor    puml:arrow puml:up.
@@ -808,9 +813,9 @@ fibo-sec-sec-id:TickerSymbol          puml:stereotype &quot;(T,lightgreen)&quot;
 fibo-sec-sec-iss:PublicOffering       puml:stereotype &quot;(O,yellow)&quot;.
 fibo-sec-sec-lst:ListedSecurity       puml:stereotype &quot;(S,yellow)&quot;.     # also fibo-sec-eq-eq:Share
 fibo-sec-sec-lst:Listing              puml:stereotype &quot;(L,yellow)&quot;.
-cmns-cds:CodeSet                        puml:stereotype &quot;(C,lightgreen)&quot;.
-cmns-id:IdentificationScheme           puml:stereotype &quot;(S,lightgreen)&quot;. # also cmns-cds:CodeSet
-cmns-id:Identifier                     puml:stereotype &quot;(I,lightgreen)&quot;.</code></pre>
+cmns-cds:CodeSet                      puml:stereotype &quot;(C,lightgreen)&quot;.
+cmns-id:IdentificationScheme          puml:stereotype &quot;(S,lightgreen)&quot;. # also cmns-cds:CodeSet
+cmns-id:Identifier                    puml:stereotype &quot;(I,lightgreen)&quot;.</code></pre>
 <h2 data-number="4.7" id="generating-semantic-transformation"><span class="header-section-number">4.7</span> Generating Semantic Transformation</h2>
 <p>Although the FIBO IPO model is considerably more complex than the CB IPO model,
 we can use the <code>rdf2sparql</code> script (part of the <a href="https://github.com/VladimirAlexiev/rdf2rml">RDF by Example</a> open source project)
